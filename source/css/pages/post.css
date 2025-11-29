@@ -1,0 +1,323 @@
+/* ===========================================
+ * Post Page Styles
+ * Based on Figma design specifications
+ * =========================================== */
+
+.post-page {
+  padding: var(--space-5) 0;
+}
+
+.post-header {
+  margin-bottom: var(--space-6);
+}
+
+.post-title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+[data-lang="en-US"] .post-title {
+  font-size: calc(var(--font-size-h1) + 4px);
+}
+
+.post-meta {
+  font-size: var(--font-size-caption);
+}
+
+.post-cover {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+}
+
+.post-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Post Content */
+.card--post-content {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.card--post-content .card__body {
+  padding: 0;
+}
+
+/* Table of Contents */
+.post-toc {
+  width: 100%;
+  max-width: 300px;
+  float: none;
+  margin: 0 0 var(--space-4) 0;
+}
+
+@media (min-width: 768px) {
+  .post-toc {
+    float: right;
+    margin: 0 0 var(--space-4) var(--space-4);
+  }
+}
+
+.card--toc {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.card--toc .card__header {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid hsl(var(--color-border-primary) / 0.5);
+}
+
+.card--toc .card__title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.card--toc .card__body {
+  padding: var(--space-3) var(--space-4);
+}
+
+.post-toc-list {
+  padding-left: var(--space-3);
+  margin: 0;
+  list-style: none;
+}
+
+.post-toc-list ul {
+  padding-left: var(--space-3);
+  margin: var(--space-2) 0 0 0;
+  list-style: none;
+}
+
+.post-toc-list li {
+  margin: var(--space-1) 0;
+}
+
+.post-toc-list a {
+  display: block;
+  padding: var(--space-1) var(--space-2);
+  color: hsl(var(--color-text-secondary));
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+}
+
+.post-toc-list a:hover,
+.post-toc-list a.active {
+  color: hsl(var(--color-accent-start));
+  background-color: hsl(var(--color-accent-start) / 0.1);
+  text-decoration: none;
+}
+
+/* Post Body */
+.post-body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-base);
+  color: hsl(var(--color-text-primary));
+}
+
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4,
+.post-body h5,
+.post-body h6 {
+  margin: var(--space-6) 0 var(--space-4) 0;
+  font-family: var(--font-title);
+  font-weight: 600;
+  line-height: 1.3;
+  color: hsl(var(--color-text-primary));
+}
+
+.post-body h1 {
+  font-size: var(--font-size-h1);
+  border-bottom: 1px solid hsl(var(--color-border-primary));
+  padding-bottom: var(--space-3);
+}
+
+.post-body h2 {
+  font-size: var(--font-size-h2);
+  border-bottom: 1px solid hsl(var(--color-border-primary));
+  padding-bottom: var(--space-3);
+}
+
+.post-body h3 {
+  font-size: var(--font-size-h3);
+}
+
+.post-body h4 {
+  font-size: var(--font-size-h4);
+}
+
+.post-body h5 {
+  font-size: var(--font-size-h5);
+}
+
+.post-body h6 {
+  font-size: var(--font-size-body);
+}
+
+.post-body p {
+  margin: 0 0 var(--space-4) 0;
+  line-height: var(--line-height-base);
+}
+
+.post-body a {
+  color: hsl(var(--color-accent-start));
+  text-decoration: none;
+  border-bottom: 1px dashed hsl(var(--color-accent-start) / 0.5);
+}
+
+.post-body a:hover {
+  color: hsl(var(--color-accent-end));
+  border-bottom-style: solid;
+}
+
+.post-body strong {
+  font-weight: 600;
+}
+
+.post-body em {
+  font-style: italic;
+}
+
+.post-body ul,
+.post-body ol {
+  margin: 0 0 var(--space-4) var(--space-5);
+  padding: 0;
+}
+
+.post-body li {
+  margin: var(--space-2) 0;
+}
+
+.post-body blockquote {
+  margin: 0 0 var(--space-4) 0;
+  padding: var(--space-4);
+  border-left: 4px solid hsl(var(--color-accent-start));
+  background-color: hsl(var(--color-bg-secondary) / 0.5);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.post-body blockquote p {
+  margin: 0;
+  font-style: italic;
+  color: hsl(var(--color-text-secondary));
+}
+
+.post-body code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: hsl(var(--color-accent-start));
+  background-color: hsl(var(--color-bg-secondary));
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+}
+
+.post-body pre {
+  margin: 0 0 var(--space-4) 0;
+  padding: var(--space-4);
+  overflow: auto;
+  background-color: hsl(var(--color-bg-secondary));
+  border-radius: var(--radius-md);
+  border: 1px solid hsl(var(--color-border-primary));
+}
+
+.post-body pre code {
+  color: inherit;
+  background-color: transparent;
+  padding: 0;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+}
+
+/* Post Footer */
+.post-tags .tag {
+  transition: transform var(--transition-base);
+}
+
+.post-tags .tag:hover {
+  transform: scale(1.05);
+}
+
+.post-nav-link {
+  text-decoration: none;
+  color: hsl(var(--color-text-primary));
+  transition: all var(--transition-base);
+  min-height: 60px;
+}
+
+.post-nav-link:hover {
+  color: hsl(var(--color-accent-start));
+}
+
+.post-nav-link--prev::before {
+  content: "←";
+  margin-right: var(--space-2);
+}
+
+.post-nav-link--next::after {
+  content: "→";
+  margin-left: var(--space-2);
+}
+
+/* Comments Section */
+.comments-placeholder,
+.comments-disabled {
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: var(--breakpoint-md)) {
+  .post-title {
+    font-size: var(--font-size-h2);
+  }
+  
+  [data-lang="en-US"] .post-title {
+    font-size: calc(var(--font-size-h2) + 2px);
+  }
+  
+  .post-toc {
+    max-width: 100%;
+  }
+  
+  .post-nav-link {
+    font-size: var(--font-size-small);
+  }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+  .post-page {
+    padding: var(--space-4) 0;
+  }
+  
+  .post-title {
+    font-size: var(--font-size-h3);
+  }
+  
+  [data-lang="en-US"] .post-title {
+    font-size: var(--font-size-h2);
+  }
+  
+  .post-meta {
+    font-size: var(--font-size-small);
+  }
+}

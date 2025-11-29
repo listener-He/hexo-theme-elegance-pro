@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html data-theme="day" data-lang="zh-CN">
+<%- partial('_partial/head') %>
+
+<body>
+  <!-- Skip to content link for accessibility -->
+  <a href="#main-content" class="sr-only skip-link">跳转到主要内容</a>
+  
+  <!-- Header -->
+  <header class="site-header">
+    <!-- Navigation will go here -->
+  </header>
+  
+  <!-- Main content -->
+  <main id="main-content">
+    <%- body %>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="site-footer">
+    <!-- Footer content will go here -->
+  </footer>
+  
+  <!-- Theme switcher -->
+  <button class="theme-toggle btn btn--icon" aria-label="切换主题">
+    <span class="theme-toggle-icon">🌙</span>
+  </button>
+  
+  <!-- Language switcher -->
+  <button class="lang-toggle btn btn--icon" data-action="toggle-lang" aria-label="切换语言">
+    <span class="lang-toggle-icon">🌐</span>
+  </button>
+  
+  <!-- Back to top button -->
+  <button class="back-to-top btn btn--icon" aria-label="回到顶部">
+    <span class="back-to-top-icon">↑</span>
+  </button>
+  
+  <!-- Main JavaScript -->
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<%- extends 'layout.ejs' %>
+
+<% block content %>
+<div class="archive-page py-5">
+  <div class="container">
+    <!-- Page Header -->
+    <header class="page-header mb-5 text-center">
+      <h1 class="page-title gradient-text mb-3" 
+          data-i18n="archive.title"
+          data-text-zh="文章归档"
+          data-text-en="Archive">
+        文章归档
+      </h1>
+      <p class="page-subtitle text-muted">
+        共计 <%= posts.length %> 篇文章
+      </p>
+    </header>
+
+    <!-- Archive Content -->
+    <div class="archive-content">
+      <% if (posts.length > 0) { %>
+        <% 
+          // Group posts by year
+          const postsByYear = {};
+          posts.forEach(post => {
+            const year = post.date.format('YYYY');
+            if (!postsByYear[year]) {
+              postsByYear[year] = [];
+            }
+            postsByYear[year].push(post);
+          });
+        %>
+
+        <% Object.keys(postsByYear).sort((a, b) => b - a).forEach(year => { %>
+          <div class="archive-year mb-5" id="year-<%= year %>">
+            <h2 class="archive-year-title d-flex align-items-center mb-4">
+              <span class="me-3 gradient-text" data-i18n="archive.year" data-i18n-param-year="<%= year %>">
+                <%= year %> 年
+              </span>
+              <span class="badge bg-secondary">
+                <%= postsByYear[year].length %> <span data-i18n="archive.count" data-i18n-param-count="<%= postsByYear[year].length %>">篇文章</span>
+              </span>
+              <button class="btn btn-sm btn-outline-primary ms-auto toggle-year" 
+                      data-bs-toggle="collapse" 
+                      data-bs-target="#posts-<%= year %>" 
+                      aria-expanded="true" 
+                      aria-controls="posts-<%= year %>">
+                <span data-i18n="archive.collapse">折叠</span>
+                <span data-i18n="archive.expand">展开</span>
+              </button>
+            </h2>
+            
+            <div class="archive-posts collapse show" id="posts-<%= year %>">
+              <% postsByYear[year].forEach(post => { %>
+                <article class="archive-post card mb-3">
+                  <div class="card__body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <h3 class="archive-post-title h5 mb-0">
+                        <a href="<%= url_for(post.path) %>" class="text-decoration-none">
+                          <%= post.title || '无标题' %>
+                        </a>
+                      </h3>
+                      <time class="archive-post-date text-muted small" datetime="<%= post.date.toISOString() %>">
+                        <%= post.date.format('MM-DD') %>
+                      </time>
+                    </div>
+                    <% if (post.tags && post.tags.length > 0) { %>
+                      <div class="archive-post-tags mt-2">
+                        <% post.tags.forEach(tag => { %>
+                          <a href="<%= url_for(tag.path) %>" class="tag tag--sm me-1">
+                            <%= tag.name %>
+                          </a>
+                        <% }); %>
+                      </div>
+                    <% } %>
+                  </div>
+                </article>
+              <% }); %>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <div class="empty-state text-center py-5">
+          <h3 class="mb-3">暂无文章</h3>
+          <p class="text-muted">还没有发布任何文章</p>
+          <a href="/" class="btn btn--primary">返回首页</a>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- Pagination -->
+    <% if (posts.length > 0 && pagination) { %>
+      <nav class="pagination-wrapper mt-5" aria-label="文章分页导航">
+        <%- partial('_partial/pagination', { pagination: pagination, baseUrl: '/archives/' }) %>
+      </nav>
+    <% } %>
+  </div>
+</div>
+<% endblock %>

@@ -1,0 +1,100 @@
+/* ===========================================
+ * Categories Page Styles
+ * Based on Figma design specifications
+ * =========================================== */
+
+.categories-page {
+  padding: var(--space-5) 0;
+}
+
+.page-header {
+  margin-bottom: var(--space-6);
+}
+
+.page-title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+}
+
+[data-lang="en-US"] .page-title {
+  font-size: calc(var(--font-size-h1) + 4px);
+}
+
+.card--category {
+  transition: all var(--transition-base);
+  border: 1px solid hsl(var(--color-border-primary) / 0.5);
+}
+
+.card--category:hover {
+  transform: translateY(-4px);
+  border-color: hsl(var(--color-accent-start) / 0.3);
+  box-shadow: var(--shadow-2);
+}
+
+.card--category .card__title a {
+  color: hsl(var(--color-text-primary));
+  transition: color var(--transition-base);
+}
+
+.card--category .card__title a:hover {
+  color: hsl(var(--color-accent-start));
+}
+
+.category-count .badge {
+  font-size: var(--font-size-small);
+}
+
+/* Category Cloud */
+.category-cloud-section {
+  margin-top: var(--space-6);
+}
+
+.category-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.category-cloud .tag {
+  transition: all var(--transition-base);
+}
+
+.category-cloud .tag:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-1);
+}
+
+/* Empty State */
+.empty-state {
+  padding: var(--space-8) 0;
+}
+
+.empty-state h3 {
+  color: hsl(var(--color-text-primary));
+}
+
+/* Responsive adjustments */
+@media (max-width: var(--breakpoint-md)) {
+  .page-title {
+    font-size: var(--font-size-h2);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: calc(var(--font-size-h2) + 2px);
+  }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+  .categories-page {
+    padding: var(--space-4) 0;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-h3);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: var(--font-size-h2);
+  }
+}

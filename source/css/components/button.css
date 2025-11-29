@@ -1,0 +1,130 @@
+/* ===========================================
+ * Button Component
+ * Based on Figma design specifications
+ * =========================================== */
+
+.btn {
+  /* Base styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border-radius: var(--radius-md);
+  transition: 
+    color var(--transition-base),
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+  cursor: pointer;
+  outline: none;
+  
+  /* Theme-aware styles */
+  background-color: hsl(var(--color-accent-start));
+  color: white;
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-1);
+  
+  /* Sizes */
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+}
+
+/* Hover state */
+.btn:hover {
+  background-color: hsl(var(--color-accent-end));
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+}
+
+/* Focus state */
+.btn:focus {
+  box-shadow: 0 0 0 3px hsl(var(--color-accent-start) / 0.3);
+}
+
+/* Active state */
+.btn:active {
+  background-color: hsl(var(--color-accent-start));
+  box-shadow: var(--shadow-1);
+  transform: translateY(0);
+  transition: var(--transition-fast);
+}
+
+/* Disabled state */
+.btn:disabled {
+  background-color: hsl(var(--color-border-primary));
+  color: hsl(var(--color-text-secondary));
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Secondary variant */
+.btn--secondary {
+  background-color: transparent;
+  color: hsl(var(--color-accent-start));
+  border-color: hsl(var(--color-accent-start));
+}
+
+.btn--secondary:hover {
+  background-color: hsl(var(--color-accent-start) / 0.1);
+  border-color: hsl(var(--color-accent-end));
+}
+
+/* Size variants */
+.btn--sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-small);
+  border-radius: var(--radius-sm);
+}
+
+.btn--lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--font-size-body);
+  border-radius: var(--radius-lg);
+}
+
+/* Full width variant */
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+/* Icon button */
+.btn--icon {
+  padding: var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+/* Glass effect variant */
+.btn--glass {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  color: hsl(var(--color-text-primary));
+}
+
+.btn--glass:hover {
+  background: hsl(var(--color-bg-secondary) / 0.8);
+}
+
+/* Gradient variant */
+.btn--gradient {
+  background: linear-gradient(90deg, 
+    hsl(var(--color-accent-start)), 
+    hsl(var(--color-accent-end)));
+  border: none;
+}
+
+.btn--gradient:hover {
+  background: linear-gradient(90deg, 
+    hsl(var(--color-accent-end)), 
+    hsl(var(--color-accent-start)));
+}

@@ -1,0 +1,128 @@
+/* ===========================================
+ * Card Component
+ * Based on Figma design specifications
+ * =========================================== */
+
+.card {
+  /* Base styles */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: hsl(var(--color-bg-tertiary));
+  background-clip: border-box;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-1);
+  transition: 
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+  
+  /* Theme-aware styles */
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+}
+
+/* Hover state */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+/* Card body */
+.card__body {
+  flex: 1 1 auto;
+  padding: var(--space-6);
+}
+
+.card__title {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-title);
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  color: hsl(var(--color-text-primary));
+}
+
+.card__text {
+  margin-bottom: var(--space-4);
+  color: hsl(var(--color-text-secondary));
+}
+
+/* Card header */
+.card__header {
+  padding: var(--space-6) var(--space-6) 0;
+  border-bottom: 1px solid hsl(var(--color-border-primary) / 0.5);
+}
+
+/* Card footer */
+.card__footer {
+  padding: 0 var(--space-6) var(--space-6);
+  border-top: 1px solid hsl(var(--color-border-primary) / 0.5);
+}
+
+/* Image card variant */
+.card--image {
+  overflow: hidden;
+}
+
+.card__img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+}
+
+.card__img--bottom {
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+
+/* Horizontal card variant */
+.card--horizontal {
+  flex-direction: row;
+}
+
+.card--horizontal .card__img {
+  width: 40%;
+  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+}
+
+/* Gradient border variant */
+.card--gradient {
+  border: none;
+  background: linear-gradient(hsl(var(--color-bg-primary)), hsl(var(--color-bg-primary))) padding-box,
+              linear-gradient(90deg, 
+                hsl(var(--color-accent-start)), 
+                hsl(var(--color-accent-end))) border-box;
+  border: 1px solid transparent;
+}
+
+/* 3D hover effect */
+.card--3d {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card--3d:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateZ(8px);
+}
+
+/* Reflection effect (high-end devices only) */
+@supports (aspect-ratio: 1) and (not (-webkit-touch-callout: none)) {
+  .card--3d::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, hsl(var(--color-bg-primary) / 0.3));
+    transform: translateZ(-1px);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+    border-radius: var(--radius-xl);
+  }
+  
+  .card--3d:hover::after {
+    opacity: 1;
+  }
+}

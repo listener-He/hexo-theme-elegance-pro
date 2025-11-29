@@ -1,0 +1,128 @@
+/* ===========================================
+ * Pagination Component
+ * Based on Figma design specifications
+ * =========================================== */
+
+.pagination {
+  /* Base styles */
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: var(--radius-md);
+  
+  /* Center by default */
+  justify-content: center;
+}
+
+.pagination__item {
+  /* Base styles */
+  display: inline-flex;
+  
+  /* Spacing between items */
+  &:not(:first-child) .pagination__link {
+    margin-left: calc(var(--space-1) * -1);
+  }
+  
+  /* First and last items */
+  &:first-child .pagination__link {
+    border-top-left-radius: var(--radius-md);
+    border-bottom-left-radius: var(--radius-md);
+  }
+  
+  &:last-child .pagination__link {
+    border-top-right-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+  }
+}
+
+.pagination__link {
+  /* Base styles */
+  position: relative;
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  margin-left: calc(var(--space-1) * -1);
+  line-height: 1.25;
+  text-decoration: none;
+  border: 1px solid hsl(var(--color-border-primary));
+  transition: all var(--transition-base);
+  
+  /* Theme-aware styles */
+  background: hsl(var(--color-bg-tertiary));
+  color: hsl(var(--color-text-primary));
+  
+  /* Hover state */
+  &:hover {
+    z-index: 2;
+    background-color: hsl(var(--color-bg-secondary));
+    border-color: hsl(var(--color-border-primary));
+    transform: translateY(-1px);
+  }
+  
+  /* Focus state */
+  &:focus {
+    z-index: 3;
+    box-shadow: 0 0 0 3px hsl(var(--color-accent-start) / 0.3);
+  }
+}
+
+/* Active state */
+.pagination__item--active .pagination__link {
+  z-index: 3;
+  background: linear-gradient(90deg,
+    hsl(var(--color-accent-start)),
+    hsl(var(--color-accent-end)));
+  color: white;
+  border-color: hsl(var(--color-accent-start));
+}
+
+/* Disabled state */
+.pagination__item--disabled .pagination__link {
+  color: hsl(var(--color-text-tertiary));
+  pointer-events: none;
+  background-color: hsl(var(--color-bg-secondary));
+  border-color: hsl(var(--color-border-primary));
+  opacity: 0.6;
+}
+
+/* Size variants */
+.pagination--sm .pagination__link {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-small);
+}
+
+.pagination--lg .pagination__link {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-body);
+}
+
+/* Glass effect variant */
+.pagination--glass .pagination__link {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+}
+
+.pagination--glass .pagination__item--active .pagination__link {
+  background: linear-gradient(90deg,
+    hsl(var(--color-accent-start)),
+    hsl(var(--color-accent-end)));
+  border: none;
+}
+
+/* Gradient border variant */
+.pagination--gradient {
+  .pagination__link {
+    border: 1px solid transparent;
+    background: linear-gradient(hsl(var(--color-bg-primary)), hsl(var(--color-bg-primary))) padding-box,
+                linear-gradient(90deg,
+                  hsl(var(--color-accent-start)),
+                  hsl(var(--color-accent-end))) border-box;
+  }
+  
+  .pagination__item--active .pagination__link {
+    background: linear-gradient(90deg,
+      hsl(var(--color-accent-start)),
+      hsl(var(--color-accent-end)));
+  }
+}

@@ -1,0 +1,175 @@
+<%- extends 'layout.ejs' %>
+
+<% block content %>
+<article class="post-page py-5" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="container">
+    <!-- Post Header -->
+    <header class="post-header mb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-4">
+            <% if (page.categories && page.categories.length > 0) { %>
+              <div class="post-categories mb-3">
+                <% page.categories.forEach(category => { %>
+                  <a href="<%= url_for(category.path) %>" class="tag tag--sm me-2">
+                    <%= category.name %>
+                  </a>
+                <% }); %>
+              </div>
+            <% } %>
+            
+            <h1 class="post-title gradient-text mb-3" itemprop="name headline">
+              <%= page.title || '无标题' %>
+            </h1>
+            
+            <div class="post-meta text-muted">
+              <time class="post-date" itemprop="datePublished" datetime="<%= page.date.toISOString() %>">
+                <%= page.date.format('YYYY年MM月DD日') %>
+              </time>
+              <% if (page.updated && !moment(page.updated).isSame(page.date)) { %>
+                <span class="mx-2">•</span>
+                <time class="post-updated" itemprop="dateModified" datetime="<%= page.updated.toISOString() %>">
+                  更新于 <%= page.updated.format('YYYY年MM月DD日') %>
+                </time>
+              <% } %>
+              <span class="mx-2">•</span>
+              <span class="post-reading-time">
+                <span data-i18n="post.readingTime" data-i18n-param-minutes="<%= Math.ceil(page.content.length / 400) || 1 %>">
+                  阅读 <%= Math.ceil(page.content.length / 400) || 1 %> 分钟
+                </span>
+              </span>
+              <% if (page.wordCount) { %>
+                <span class="mx-2">•</span>
+                <span class="post-word-count">
+                  <span data-i18n="post.wordCount">字数</span>: <%= page.wordCount %>
+                </span>
+              <% } %>
+            </div>
+          </div>
+          
+          <% if (page.cover) { %>
+            <div class="post-cover mb-4">
+              <img src="<%= page.cover %>" alt="<%= page.title %>" class="img-fluid rounded-4">
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="post-content card card--post-content mb-5" itemprop="articleBody">
+          <div class="card__body">
+            <!-- Table of Contents -->
+            <% if (page.toc) { %>
+              <aside class="post-toc float-md-end ms-md-4 mb-4">
+                <div class="card card--toc">
+                  <div class="card__header">
+                    <h3 class="card__title h6 mb-0">目录</h3>
+                  </div>
+                  <div class="card__body">
+                    <div class="post-toc-content">
+                      <%= toc(page.content, { list_number: false, class: 'post-toc-list' }) %>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            <% } %>
+            
+            <!-- Post Body -->
+            <div class="post-body">
+              <%- page.content %>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Post Footer -->
+        <footer class="post-footer mb-5">
+          <% if (page.tags && page.tags.length > 0) { %>
+            <div class="post-tags mb-4">
+              <h3 class="h6 d-inline-block me-2 mb-0" data-i18n="post.tags">标签:</h3>
+              <% page.tags.forEach(tag => { %>
+                <a href="<%= url_for(tag.path) %>" class="tag tag--sm me-2">
+                  <%= tag.name %>
+                </a>
+              <% }); %>
+            </div>
+          <% } %>
+          
+          <div class="post-actions d-flex justify-content-between">
+            <div>
+              <button class="btn btn--icon me-2" aria-label="点赞">
+                <span>👍</span>
+              </button>
+              <button class="btn btn--icon me-2" aria-label="分享">
+                <span>📤</span>
+              </button>
+            </div>
+            <div>
+              <button class="btn btn--icon" aria-label="收藏">
+                <span>⭐</span>
+              </button>
+            </div>
+          </div>
+        </footer>
+        
+        <!-- Post Navigation -->
+        <nav class="post-navigation card mb-5">
+          <div class="card__body">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <% if (page.prev) { %>
+                  <a href="<%= url_for(page.prev.path) %>" class="post-nav-link post-nav-link--prev d-flex align-items-center h-100">
+                    <span class="me-2" data-i18n="post.prevPost">上一篇</span>
+                    <span class="text-truncate"><%= page.prev.title %></span>
+                  </a>
+                <% } else { %>
+                  <div class="post-nav-link post-nav-link--prev d-flex align-items-center h-100 text-muted">
+                    <span class="me-2" data-i18n="post.prevPost">上一篇</span>
+                    <span class="text-truncate">没有了</span>
+                  </div>
+                <% } %>
+              </div>
+              <div class="col-md-6">
+                <% if (page.next) { %>
+                  <a href="<%= url_for(page.next.path) %>" class="post-nav-link post-nav-link--next d-flex align-items-center justify-content-end h-100">
+                    <span class="text-truncate text-end"><%= page.next.title %></span>
+                    <span class="ms-2" data-i18n="post.nextPost">下一篇</span>
+                  </a>
+                <% } else { %>
+                  <div class="post-nav-link post-nav-link--next d-flex align-items-center justify-content-end h-100 text-muted">
+                    <span class="text-truncate text-end">没有了</span>
+                    <span class="ms-2" data-i18n="post.nextPost">下一篇</span>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </nav>
+        
+        <!-- Comments Section -->
+        <section class="post-comments">
+          <div class="card">
+            <div class="card__header">
+              <h3 class="card__title mb-0" data-i18n="common.comments">评论</h3>
+            </div>
+            <div class="card__body">
+              <% if (theme.components.comments) { %>
+                <!-- Comments system will be loaded here -->
+                <div class="comments-placeholder text-center py-5">
+                  <p>评论系统加载中...</p>
+                </div>
+              <% } else { %>
+                <div class="comments-disabled text-center py-5">
+                  <p class="text-muted">评论功能已关闭</p>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</article>
+<% endblock %>

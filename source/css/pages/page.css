@@ -1,0 +1,214 @@
+/* ===========================================
+ * Page Page Styles
+ * Based on Figma design specifications
+ * =========================================== */
+
+.page-page {
+  padding: var(--space-5) 0;
+}
+
+.page-header {
+  margin-bottom: var(--space-6);
+}
+
+.page-title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+[data-lang="en-US"] .page-title {
+  font-size: calc(var(--font-size-h1) + 4px);
+}
+
+.page-meta {
+  font-size: var(--font-size-caption);
+}
+
+/* Page Content */
+.card--page-content {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.card--page-content .card__body {
+  padding: 0;
+}
+
+/* Table of Contents */
+.page-toc {
+  width: 100%;
+  max-width: 300px;
+  float: none;
+  margin: 0 0 var(--space-4) 0;
+}
+
+@media (min-width: 768px) {
+  .page-toc {
+    float: right;
+    margin: 0 0 var(--space-4) var(--space-4);
+  }
+}
+
+/* Page Body */
+.page-body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-base);
+  color: hsl(var(--color-text-primary));
+}
+
+.page-body h1,
+.page-body h2,
+.page-body h3,
+.page-body h4,
+.page-body h5,
+.page-body h6 {
+  margin: var(--space-6) 0 var(--space-4) 0;
+  font-family: var(--font-title);
+  font-weight: 600;
+  line-height: 1.3;
+  color: hsl(var(--color-text-primary));
+}
+
+.page-body h1 {
+  font-size: var(--font-size-h1);
+  border-bottom: 1px solid hsl(var(--color-border-primary));
+  padding-bottom: var(--space-3);
+}
+
+.page-body h2 {
+  font-size: var(--font-size-h2);
+  border-bottom: 1px solid hsl(var(--color-border-primary));
+  padding-bottom: var(--space-3);
+}
+
+.page-body h3 {
+  font-size: var(--font-size-h3);
+}
+
+.page-body h4 {
+  font-size: var(--font-size-h4);
+}
+
+.page-body h5 {
+  font-size: var(--font-size-h5);
+}
+
+.page-body h6 {
+  font-size: var(--font-size-body);
+}
+
+.page-body p {
+  margin: 0 0 var(--space-4) 0;
+  line-height: var(--line-height-base);
+}
+
+.page-body a {
+  color: hsl(var(--color-accent-start));
+  text-decoration: none;
+  border-bottom: 1px dashed hsl(var(--color-accent-start) / 0.5);
+}
+
+.page-body a:hover {
+  color: hsl(var(--color-accent-end));
+  border-bottom-style: solid;
+}
+
+.page-body strong {
+  font-weight: 600;
+}
+
+.page-body em {
+  font-style: italic;
+}
+
+.page-body ul,
+.page-body ol {
+  margin: 0 0 var(--space-4) var(--space-5);
+  padding: 0;
+}
+
+.page-body li {
+  margin: var(--space-2) 0;
+}
+
+.page-body blockquote {
+  margin: 0 0 var(--space-4) 0;
+  padding: var(--space-4);
+  border-left: 4px solid hsl(var(--color-accent-start));
+  background-color: hsl(var(--color-bg-secondary) / 0.5);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.page-body blockquote p {
+  margin: 0;
+  font-style: italic;
+  color: hsl(var(--color-text-secondary));
+}
+
+.page-body code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: hsl(var(--color-accent-start));
+  background-color: hsl(var(--color-bg-secondary));
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+}
+
+.page-body pre {
+  margin: 0 0 var(--space-4) 0;
+  padding: var(--space-4);
+  overflow: auto;
+  background-color: hsl(var(--color-bg-secondary));
+  border-radius: var(--radius-md);
+  border: 1px solid hsl(var(--color-border-primary));
+}
+
+.page-body pre code {
+  color: inherit;
+  background-color: transparent;
+  padding: 0;
+}
+
+.page-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+}
+
+/* Responsive adjustments */
+@media (max-width: var(--breakpoint-md)) {
+  .page-title {
+    font-size: var(--font-size-h2);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: calc(var(--font-size-h2) + 2px);
+  }
+  
+  .page-toc {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+  .page-page {
+    padding: var(--space-4) 0;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-h3);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: var(--font-size-h2);
+  }
+  
+  .page-meta {
+    font-size: var(--font-size-small);
+  }
+}

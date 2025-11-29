@@ -1,0 +1,164 @@
+<%- extends 'layout.ejs' %>
+
+<% block content %>
+<div class="about-page py-5">
+  <div class="container">
+    <!-- Page Header -->
+    <header class="page-header mb-5 text-center">
+      <h1 class="page-title gradient-text mb-3" 
+          data-i18n="about.intro"
+          data-text-zh="关于我"
+          data-text-en="About Me">
+        关于我
+      </h1>
+    </header>
+
+    <!-- About Content -->
+    <div class="about-content">
+      <div class="row">
+        <!-- Profile Section -->
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <div class="card card--profile text-center">
+            <div class="card__body">
+              <div class="profile-avatar mb-4 mx-auto">
+                <div class="avatar-placeholder rounded-circle mx-auto" 
+                     style="width: 150px; height: 150px; background: linear-gradient(135deg, hsl(var(--color-accent-start)), hsl(var(--color-accent-end)));"></div>
+              </div>
+              <h2 class="profile-name h4 mb-2">用户名</h2>
+              <p class="profile-title text-muted mb-3">职位/头衔</p>
+              
+              <!-- Social Links -->
+              <div class="social-links d-flex justify-content-center flex-wrap">
+                <a href="#" class="btn btn--icon btn--glass me-2 mb-2" aria-label="GitHub">
+                  <span>💻</span>
+                </a>
+                <a href="#" class="btn btn--icon btn--glass me-2 mb-2" aria-label="Twitter">
+                  <span>🐦</span>
+                </a>
+                <a href="#" class="btn btn--icon btn--glass me-2 mb-2" aria-label="Email">
+                  <span>✉️</span>
+                </a>
+                <a href="#" class="btn btn--icon btn--glass mb-2" aria-label="LinkedIn">
+                  <span>👔</span>
+                </a>
+              </div>
+              
+              <!-- Contact Info -->
+              <div class="contact-info mt-4 pt-4 border-top">
+                <div class="contact-item mb-3">
+                  <div class="contact-label text-muted small" data-i18n="about.location">现居地</div>
+                  <div class="contact-value">城市, 国家</div>
+                </div>
+                <div class="contact-item">
+                  <div class="contact-label text-muted small" data-i18n="about.contact">联系方式</div>
+                  <div class="contact-value">email@example.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="col-lg-8">
+          <!-- Introduction -->
+          <div class="card card--section mb-5">
+            <div class="card__header">
+              <h3 class="card__title mb-0" data-i18n="about.intro">关于我</h3>
+            </div>
+            <div class="card__body">
+              <div class="about-text">
+                <p>这里是关于你的详细介绍。你可以写一些关于你的背景、技能、兴趣爱好等内容。</p>
+                <p>例如：我是一名全栈开发者，专注于Web技术和用户体验设计。我喜欢创造优雅的数字体验，对新技术充满热情。</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Experience -->
+          <div class="card card--section mb-5">
+            <div class="card__header">
+              <h3 class="card__title mb-0" data-i18n="about.experience">工作经历</h3>
+            </div>
+            <div class="card__body">
+              <div class="experience-list">
+                <div class="experience-item mb-4">
+                  <div class="d-flex justify-content-between">
+                    <h4 class="experience-position h5 mb-1">职位名称</h4>
+                    <span class="experience-date text-muted">2020 - 至今</span>
+                  </div>
+                  <div class="experience-company text-muted mb-2">公司名称</div>
+                  <p class="experience-description">在这里描述你的工作职责和成就...</p>
+                </div>
+                
+                <div class="experience-item">
+                  <div class="d-flex justify-content-between">
+                    <h4 class="experience-position h5 mb-1">职位名称</h4>
+                    <span class="experience-date text-muted">2018 - 2020</span>
+                  </div>
+                  <div class="experience-company text-muted mb-2">公司名称</div>
+                  <p class="experience-description">在这里描述你的工作职责和成就...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Skills -->
+          <div class="card card--section mb-5">
+            <div class="card__header">
+              <h3 class="card__title mb-0" data-i18n="hero.techStack">技术栈</h3>
+            </div>
+            <div class="card__body">
+              <div class="skills-list">
+                <div class="skill-item mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="skill-name">前端开发</span>
+                    <span class="skill-level">90%</span>
+                  </div>
+                  <div class="progress progress--glass">
+                    <div class="progress__bar" style="width: 90%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="skill-name">后端开发</span>
+                    <span class="skill-level">80%</span>
+                  </div>
+                  <div class="progress progress--glass">
+                    <div class="progress__bar" style="width: 80%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="skill-name">UI/UX设计</span>
+                    <span class="skill-level">75%</span>
+                  </div>
+                  <div class="progress progress--glass">
+                    <div class="progress__bar" style="width: 75%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Interests -->
+          <div class="card card--section">
+            <div class="card__header">
+              <h3 class="card__title mb-0" data-i18n="about.interests">兴趣爱好</h3>
+            </div>
+            <div class="card__body">
+              <div class="interests-list">
+                <div class="tag tag--lg me-2 mb-2">摄影</div>
+                <div class="tag tag--lg me-2 mb-2">旅行</div>
+                <div class="tag tag--lg me-2 mb-2">阅读</div>
+                <div class="tag tag--lg me-2 mb-2">音乐</div>
+                <div class="tag tag--lg mb-2">编程</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% endblock %>

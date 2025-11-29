@@ -1,0 +1,62 @@
+<%- extends 'layout.ejs' %>
+
+<% block content %>
+<article class="page-page py-5" itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <!-- Page Header -->
+    <header class="page-header mb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-4">
+            <h1 class="page-title gradient-text mb-3" itemprop="name headline">
+              <%= page.title || '无标题' %>
+            </h1>
+            
+            <div class="page-meta text-muted">
+              <time class="page-date" itemprop="datePublished" datetime="<%= page.date.toISOString() %>">
+                <%= page.date.format('YYYY年MM月DD日') %>
+              </time>
+              <% if (page.updated && !moment(page.updated).isSame(page.date)) { %>
+                <span class="mx-2">•</span>
+                <time class="page-updated" itemprop="dateModified" datetime="<%= page.updated.toISOString() %>">
+                  更新于 <%= page.updated.format('YYYY年MM月DD日') %>
+                </time>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="page-content card card--page-content mb-5" itemprop="mainEntityOfPage">
+          <div class="card__body">
+            <!-- Table of Contents -->
+            <% if (page.toc) { %>
+              <aside class="page-toc float-md-end ms-md-4 mb-4">
+                <div class="card card--toc">
+                  <div class="card__header">
+                    <h3 class="card__title h6 mb-0">目录</h3>
+                  </div>
+                  <div class="card__body">
+                    <div class="page-toc-content">
+                      <%= toc(page.content, { list_number: false, class: 'page-toc-list' }) %>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            <% } %>
+            
+            <!-- Page Body -->
+            <div class="page-body">
+              <%- page.content %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+<% endblock %>

@@ -1,0 +1,154 @@
+/* ===========================================
+ * About Page Styles
+ * Based on Figma design specifications
+ * =========================================== */
+
+.about-page {
+  padding: var(--space-5) 0;
+}
+
+.page-header {
+  margin-bottom: var(--space-6);
+}
+
+.page-title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+}
+
+[data-lang="en-US"] .page-title {
+  font-size: calc(var(--font-size-h1) + 4px);
+}
+
+/* Profile Card */
+.card--profile {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  box-shadow: var(--shadow-2);
+}
+
+.profile-avatar .avatar-placeholder {
+  box-shadow: var(--shadow-2);
+}
+
+.social-links .btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-links .btn:hover {
+  transform: translateY(-2px) rotate(5deg);
+}
+
+.contact-info .contact-item {
+  text-align: left;
+}
+
+.contact-info .contact-label {
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+/* Section Cards */
+.card--section {
+  border: 1px solid hsl(var(--color-border-primary) / 0.5);
+  box-shadow: var(--shadow-1);
+  transition: all var(--transition-base);
+}
+
+.card--section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.card--section .card__header {
+  border-bottom: 1px solid hsl(var(--color-border-primary) / 0.5);
+}
+
+/* Experience */
+.experience-position {
+  color: hsl(var(--color-text-primary));
+}
+
+.experience-company {
+  font-size: var(--font-size-small);
+}
+
+.experience-date {
+  font-size: var(--font-size-small);
+}
+
+.experience-description {
+  color: hsl(var(--color-text-secondary));
+  margin: 0;
+}
+
+/* Skills */
+.skill-name {
+  font-weight: 500;
+  color: hsl(var(--color-text-primary));
+}
+
+.skill-level {
+  font-size: var(--font-size-small);
+  color: hsl(var(--color-text-secondary));
+}
+
+/* Interests */
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.interests-list .tag {
+  transition: all var(--transition-base);
+}
+
+.interests-list .tag:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-1);
+}
+
+/* Responsive adjustments */
+@media (max-width: var(--breakpoint-md)) {
+  .page-title {
+    font-size: var(--font-size-h2);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: calc(var(--font-size-h2) + 2px);
+  }
+  
+  .profile-avatar .avatar-placeholder {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+  .about-page {
+    padding: var(--space-4) 0;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-h3);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: var(--font-size-h2);
+  }
+  
+  .social-links .btn {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-small);
+  }
+}

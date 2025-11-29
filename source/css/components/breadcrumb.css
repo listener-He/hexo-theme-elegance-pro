@@ -1,0 +1,89 @@
+/* ===========================================
+ * Breadcrumb Component
+ * Based on Figma design specifications
+ * =========================================== */
+
+.breadcrumb {
+  /* Base styles */
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--space-4) 0;
+  margin-bottom: var(--space-4);
+  list-style: none;
+  border-radius: var(--radius-md);
+  
+  /* Theme-aware styles */
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+}
+
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-2);
+  
+  /* First item without left padding */
+  &:first-child {
+    padding-left: var(--space-4);
+  }
+  
+  /* Last item without right padding */
+  &:last-child {
+    padding-right: var(--space-4);
+  }
+}
+
+.breadcrumb__link {
+  color: hsl(var(--color-text-secondary));
+  text-decoration: none;
+  transition: color var(--transition-base);
+  
+  &:hover {
+    color: hsl(var(--color-accent-start));
+    text-decoration: underline;
+  }
+}
+
+.breadcrumb__item--active .breadcrumb__link {
+  color: hsl(var(--color-text-primary));
+  font-weight: 500;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.breadcrumb__separator {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  color: hsl(var(--color-text-tertiary));
+}
+
+/* Divider style variants */
+.breadcrumb--arrow .breadcrumb__separator::after {
+  content: "›";
+}
+
+.breadcrumb--slash .breadcrumb__separator::after {
+  content: "/";
+}
+
+.breadcrumb--dash .breadcrumb__separator::after {
+  content: "–";
+}
+
+/* Transparent variant */
+.breadcrumb--transparent {
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Gradient variant */
+.breadcrumb--gradient {
+  background: linear-gradient(90deg,
+    hsl(var(--color-accent-start) / 0.1),
+    hsl(var(--color-accent-end) / 0.1));
+  border: 1px solid hsl(var(--color-accent-start) / 0.2);
+}

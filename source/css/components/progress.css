@@ -1,0 +1,97 @@
+/* ===========================================
+ * Progress Bar Component
+ * Based on Figma design specifications
+ * =========================================== */
+
+.progress {
+  /* Base styles */
+  display: flex;
+  height: var(--space-2);
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  
+  /* Theme-aware styles */
+  background-color: hsl(var(--color-bg-secondary));
+}
+
+.progress__bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  transition: width var(--transition-base);
+  background: linear-gradient(90deg,
+    hsl(var(--color-accent-start)),
+    hsl(var(--color-accent-end)));
+  
+  /* Add glass effect */
+  background: linear-gradient(90deg,
+    hsl(var(--color-accent-start)),
+    hsl(var(--color-accent-end)));
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Gradient variant with glass effect */
+.progress--glass {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+}
+
+/* Size variants */
+.progress--sm {
+  height: var(--space-1);
+}
+
+.progress--lg {
+  height: var(--space-3);
+}
+
+/* Animated variant */
+.progress--animated .progress__bar {
+  position: relative;
+}
+
+.progress--animated .progress__bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--color-bg-primary) / 0.3),
+    transparent
+  );
+  animation: progress-animation 2s ease-in-out infinite;
+}
+
+@keyframes progress-animation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Striped variant */
+.progress--striped .progress__bar {
+  background-image: linear-gradient(
+    45deg,
+    hsl(var(--color-bg-primary) / 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    hsl(var(--color-bg-primary) / 0.15) 50%,
+    hsl(var(--color-bg-primary) / 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: var(--space-4) var(--space-4);
+}

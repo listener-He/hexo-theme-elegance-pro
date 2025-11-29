@@ -1,0 +1,130 @@
+/* ===========================================
+ * Main Stylesheet
+ * Import all CSS modules
+ * =========================================== */
+
+/* Design Tokens */
+@import url('./_tokens.css');
+
+/* Base Styles */
+@import url('./base/reset.css');
+
+/* Components */
+@import url('./components/button.css');
+@import url('./components/card.css');
+
+/* Utilities */
+@import url('./utilities/helpers.css');
+
+/* Pages */
+/* Page-specific styles will be imported here */
+
+/* ===========================================
+ * Global Styles
+ * =========================================== */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: hsl(var(--color-accent-start) / 0.2);
+  color: hsl(var(--color-text-primary));
+}
+
+/* Scrollbar styling (WebKit browsers) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--color-bg-secondary));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--color-border-primary));
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--color-text-tertiary));
+}
+
+/* Gradient text helper */
+.gradient-text {
+  background: linear-gradient(90deg, 
+    hsl(var(--color-accent-start)), 
+    hsl(var(--color-accent-end)));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+/* Fix for Safari gradient text jagged edges */
+.gradient-text::after {
+  content: attr(data-text-zh);
+  position: absolute;
+  top: 0; 
+  left: 0;
+  z-index: -1;
+  -webkit-text-fill-color: hsl(var(--color-accent-start) / 0.03);
+}
+
+[data-lang="en-US"] .gradient-text::after {
+  content: attr(data-text-en);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--space-4);
+  padding-left: var(--space-4);
+}
+
+@media (min-width: var(--breakpoint-sm)) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: var(--breakpoint-md)) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: var(--breakpoint-lg)) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: var(--breakpoint-xl)) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: var(--breakpoint-2xl)) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* Animation helpers */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

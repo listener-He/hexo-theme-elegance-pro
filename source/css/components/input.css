@@ -1,0 +1,170 @@
+/* ===========================================
+ * Input Component
+ * Based on Figma design specifications
+ * =========================================== */
+
+.input {
+  /* Base styles */
+  display: block;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  line-height: 1.5;
+  color: hsl(var(--color-text-primary));
+  background-color: hsl(var(--color-bg-tertiary));
+  background-clip: padding-box;
+  border: 1px solid hsl(var(--color-border-primary));
+  appearance: none;
+  border-radius: var(--radius-md);
+  transition: 
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+  
+  /* Glass effect */
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  
+  /* Focus state */
+  &:focus {
+    color: hsl(var(--color-text-primary));
+    background-color: hsl(var(--color-bg-tertiary));
+    border-color: hsl(var(--color-accent-start));
+    outline: 0;
+    box-shadow: 0 0 0 3px hsl(var(--color-accent-start) / 0.25);
+  }
+  
+  /* Disabled state */
+  &:disabled,
+  &[readonly] {
+    background-color: hsl(var(--color-bg-secondary));
+    opacity: 1;
+  }
+  
+  /* Placeholder */
+  &::placeholder {
+    color: hsl(var(--color-text-tertiary));
+    opacity: 1;
+  }
+}
+
+/* Size variants */
+.input--sm {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-small);
+  border-radius: var(--radius-sm);
+}
+
+.input--lg {
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-body);
+  border-radius: var(--radius-lg);
+}
+
+/* Form control sizing in rows */
+.input--textarea {
+  min-height: calc(var(--space-6) * 3);
+  resize: vertical;
+}
+
+/* Form text */
+.input__text {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-small);
+  color: hsl(var(--color-text-secondary);
+}
+
+.input__text--success {
+  color: hsl(var(--color-success-start));
+}
+
+.input__text--error {
+  color: hsl(var(--color-error-start));
+}
+
+/* Validation states */
+.input--success {
+  border-color: hsl(var(--color-success-start));
+  
+  &:focus {
+    border-color: hsl(var(--color-success-start));
+    box-shadow: 0 0 0 3px hsl(var(--color-success-start) / 0.25);
+  }
+}
+
+.input--error {
+  border-color: hsl(var(--color-error-start));
+  
+  &:focus {
+    border-color: hsl(var(--color-error-start));
+    box-shadow: 0 0 0 3px hsl(var(--color-error-start) / 0.25);
+  }
+}
+
+/* Form groups */
+.input__group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+
+.input__group .input {
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  margin-bottom: 0;
+}
+
+.input__group-text {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: 0;
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  line-height: 1.5;
+  color: hsl(var(--color-text-secondary));
+  text-align: center;
+  white-space: nowrap;
+  background-color: hsl(var(--color-bg-secondary));
+  border: var(--glass-border);
+  border-radius: var(--radius-md);
+  
+  /* Glass effect */
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Prepend and append */
+.input__group-prepend {
+  margin-right: calc(var(--space-1) * -1);
+}
+
+.input__group-append {
+  margin-left: calc(var(--space-1) * -1);
+}
+
+.input__group-text:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input__group-text:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Search input variant */
+.input--search {
+  padding-left: calc(var(--space-4) + 1.5rem);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left calc(var(--space-4) / 2) center;
+  background-size: 1rem;
+}

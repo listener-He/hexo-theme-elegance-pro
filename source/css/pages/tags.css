@@ -1,0 +1,118 @@
+/* ===========================================
+ * Tags Page Styles
+ * Based on Figma design specifications
+ * =========================================== */
+
+.tags-page {
+  padding: var(--space-5) 0;
+}
+
+.page-header {
+  margin-bottom: var(--space-6);
+}
+
+.page-title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+}
+
+[data-lang="en-US"] .page-title {
+  font-size: calc(var(--font-size-h1) + 4px);
+}
+
+/* Tag Cloud */
+.tag-cloud-section {
+  margin-bottom: var(--space-6);
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  padding: var(--space-4);
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-1);
+}
+
+.tag-cloud .tag {
+  transition: all var(--transition-base);
+}
+
+.tag-cloud .tag:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-2);
+}
+
+/* Tag List */
+.card--tag {
+  transition: all var(--transition-base);
+  border: 1px solid hsl(var(--color-border-primary) / 0.5);
+}
+
+.card--tag:hover {
+  transform: translateY(-2px);
+  border-color: hsl(var(--color-accent-start) / 0.3);
+  box-shadow: var(--shadow-2);
+}
+
+.card--tag .card__title a {
+  color: hsl(var(--color-text-primary));
+  transition: color var(--transition-base);
+}
+
+.card--tag .card__title a:hover {
+  color: hsl(var(--color-accent-start));
+}
+
+.tag-posts ul li a {
+  color: hsl(var(--color-text-secondary));
+  transition: color var(--transition-base);
+}
+
+.tag-posts ul li a:hover {
+  color: hsl(var(--color-accent-start));
+}
+
+/* Empty State */
+.empty-state {
+  padding: var(--space-8) 0;
+}
+
+.empty-state h3 {
+  color: hsl(var(--color-text-primary));
+}
+
+/* Responsive adjustments */
+@media (max-width: var(--breakpoint-md)) {
+  .page-title {
+    font-size: var(--font-size-h2);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: calc(var(--font-size-h2) + 2px);
+  }
+  
+  .tag-cloud {
+    padding: var(--space-3);
+  }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+  .tags-page {
+    padding: var(--space-4) 0;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-h3);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: var(--font-size-h2);
+  }
+}

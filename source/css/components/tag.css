@@ -1,0 +1,90 @@
+/* ===========================================
+ * Tag Component
+ * Based on Figma design specifications
+ * =========================================== */
+
+.tag {
+  /* Base styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  transition: all var(--transition-base);
+  
+  /* Theme-aware styles */
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  color: hsl(var(--color-text-primary));
+  
+  /* Sizes */
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-small);
+  line-height: 1.2;
+}
+
+/* Hover state */
+.tag:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-1);
+}
+
+/* Size variants */
+.tag--sm {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-small);
+}
+
+.tag--lg {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-body);
+}
+
+/* Gradient variant */
+.tag--gradient {
+  background: linear-gradient(90deg,
+    hsl(var(--color-accent-start)),
+    hsl(var(--color-accent-end)));
+  color: white;
+  border: none;
+}
+
+/* Functional color variants */
+.tag--success {
+  background: linear-gradient(90deg,
+    hsl(var(--color-success-start)),
+    hsl(var(--color-success-end)));
+  color: white;
+  border: none;
+}
+
+.tag--warning {
+  background: linear-gradient(90deg,
+    hsl(var(--color-warning-start)),
+    hsl(var(--color-warning-end)));
+  color: white;
+  border: none;
+}
+
+.tag--error {
+  background: linear-gradient(90deg,
+    hsl(var(--color-error-start)),
+    hsl(var(--color-error-end)));
+  color: white;
+  border: none;
+}
+
+/* Outline variant */
+.tag--outline {
+  background: transparent;
+  border: 1px solid hsl(var(--color-accent-start));
+  color: hsl(var(--color-accent-start));
+}
+
+.tag--outline:hover {
+  background: hsl(var(--color-accent-start) / 0.1);
+}

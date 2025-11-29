@@ -1,0 +1,79 @@
+<%- extends 'layout.ejs' %>
+
+<% block content %>
+<div class="categories-page py-5">
+  <div class="container">
+    <!-- Page Header -->
+    <header class="page-header mb-5 text-center">
+      <h1 class="page-title gradient-text mb-3" 
+          data-i18n="categories.title"
+          data-text-zh="文章分类"
+          data-text-en="Categories">
+        文章分类
+      </h1>
+      <p class="page-subtitle text-muted">
+        共计 <%= categories.length %> 个分类
+      </p>
+    </header>
+
+    <!-- Categories Content -->
+    <div class="categories-content">
+      <% if (categories.length > 0) { %>
+        <div class="row">
+          <% categories.forEach(category => { %>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card card--category h-100">
+                <div class="card__body d-flex flex-column">
+                  <h3 class="card__title h5 mb-3">
+                    <a href="<%= url_for(category.path) %>" class="text-decoration-none">
+                      <%= category.name %>
+                    </a>
+                  </h3>
+                  <p class="card__text flex-grow-1">
+                    <% if (category.description) { %>
+                      <%= category.description %>
+                    <% } else { %>
+                      <span class="text-muted">这个分类还没有描述</span>
+                    <% } %>
+                  </p>
+                  <div class="mt-3 d-flex justify-content-between align-items-center">
+                    <span class="category-count">
+                      <span class="badge bg-primary">
+                        <%= category.posts.length %> 
+                        <span data-i18n="archive.count" data-i18n-param-count="<%= category.posts.length %>">篇文章</span>
+                      </span>
+                    </span>
+                    <a href="<%= url_for(category.path) %>" class="btn btn--sm btn--primary">
+                      <span data-i18n="common.readMore">阅读全文</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+        
+        <!-- Category Cloud -->
+        <div class="category-cloud-section mt-5">
+          <h2 class="section-title mb-4">分类云</h2>
+          <div class="category-cloud">
+            <% categories.forEach(category => { %>
+              <a href="<%= url_for(category.path) %>" 
+                 class="tag tag--lg me-2 mb-2" 
+                 style="font-size: <%= Math.max(12, Math.min(24, category.posts.length * 2)) %>px;">
+                <%= category.name %> (<%= category.posts.length %>)
+              </a>
+            <% }); %>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="empty-state text-center py-5">
+          <h3 class="mb-3">暂无分类</h3>
+          <p class="text-muted">还没有创建任何分类</p>
+          <a href="/" class="btn btn--primary">返回首页</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<% endblock %>

@@ -1,0 +1,128 @@
+/* ===========================================
+ * Archive Page Styles
+ * Based on Figma design specifications
+ * =========================================== */
+
+.archive-page {
+  padding: var(--space-5) 0;
+}
+
+.page-header {
+  margin-bottom: var(--space-6);
+}
+
+.page-title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+}
+
+[data-lang="en-US"] .page-title {
+  font-size: calc(var(--font-size-h1) + 4px);
+}
+
+.archive-year-title {
+  position: relative;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid hsl(var(--color-border-primary));
+}
+
+.archive-year-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg,
+    hsl(var(--color-accent-start)),
+    hsl(var(--color-accent-end)));
+  border-radius: 1px;
+}
+
+.toggle-year {
+  transition: transform var(--transition-base);
+}
+
+.toggle-year:hover {
+  transform: translateY(-1px);
+}
+
+.archive-post {
+  transition: all var(--transition-base);
+  border: 1px solid hsl(var(--color-border-primary) / 0.5);
+}
+
+.archive-post:hover {
+  transform: translateY(-2px);
+  border-color: hsl(var(--color-accent-start) / 0.3);
+  box-shadow: var(--shadow-1);
+}
+
+.archive-post-title a {
+  color: hsl(var(--color-text-primary));
+  transition: color var(--transition-base);
+}
+
+.archive-post-title a:hover {
+  color: hsl(var(--color-accent-start));
+}
+
+.archive-post-date {
+  white-space: nowrap;
+}
+
+.archive-post-tags {
+  margin-top: var(--space-2);
+}
+
+.archive-post-tags .tag {
+  transition: transform var(--transition-base);
+}
+
+.archive-post-tags .tag:hover {
+  transform: scale(1.05);
+}
+
+/* Empty state */
+.empty-state {
+  padding: var(--space-8) 0;
+}
+
+.empty-state h3 {
+  color: hsl(var(--color-text-primary));
+}
+
+/* Responsive adjustments */
+@media (max-width: var(--breakpoint-md)) {
+  .page-title {
+    font-size: var(--font-size-h2);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: calc(var(--font-size-h2) + 2px);
+  }
+  
+  .archive-year-title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .toggle-year {
+    margin-top: var(--space-2);
+  }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+  .archive-page {
+    padding: var(--space-4) 0;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-h3);
+  }
+  
+  [data-lang="en-US"] .page-title {
+    font-size: var(--font-size-h2);
+  }
+}

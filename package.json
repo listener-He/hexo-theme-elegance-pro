@@ -1,0 +1,29 @@
+{
+  "name": "hexo-theme-elegance-pro",
+  "version": "1.0.0",
+  "description": "An Apple-inspired Hexo theme with Figma-level design precision",
+  "main": "index.js",
+  "scripts": {
+    "dev": "hexo server",
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "lint:i18n": "node scripts/lint-i18n.js",
+    "lint:contrast": "node scripts/check-contrast.js",
+    "lint:performance": "echo \"Performance linting\"",
+    "test:safari": "echo \"Safari compatibility tests\"",
+    "i18n:extract": "node scripts/extract-i18n.js"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "elegance",
+    "figma",
+    "apple"
+  ],
+  "author": "Elegance Pro Team",
+  "license": "MIT",
+  "devDependencies": {
+    "hexo": "^8.1.1",
+    "hexo-cli": "^5.2.0"
+  }
+}

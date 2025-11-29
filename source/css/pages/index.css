@@ -1,0 +1,129 @@
+/* ===========================================
+ * Index Page Styles
+ * Based on Figma design specifications
+ * =========================================== */
+
+/* Hero Section */
+.hero-section {
+  padding: calc(var(--space-6) * 2) 0;
+  background-attachment: fixed;
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  transition: background 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+[data-theme="day"] .hero-section {
+  background: linear-gradient(135deg, #f0f9ff, #f5fafe);
+}
+
+[data-theme="night"] .hero-section {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.hero-title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+}
+
+[data-lang="en-US"] .hero-title {
+  font-size: calc(var(--font-size-h1) + 4px);
+}
+
+.hero-subtitle {
+  color: hsl(var(--color-text-secondary));
+  max-width: 600px;
+}
+
+.hero-avatar {
+  background: linear-gradient(135deg, 
+    hsl(var(--color-accent-start)), 
+    hsl(var(--color-accent-end)));
+  box-shadow: var(--shadow-3);
+}
+
+/* Tech Stack Section */
+.tech-stack-section {
+  background: hsl(var(--color-bg-secondary));
+}
+
+.card--tech {
+  transition: transform var(--transition-base);
+}
+
+.card--tech:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+}
+
+.tech-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, 
+    hsl(var(--color-accent-start)), 
+    hsl(var(--color-accent-end)));
+}
+
+/* Latest Posts Section */
+.card--post {
+  overflow: hidden;
+}
+
+.card--post .card__img {
+  background-color: #eee;
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+}
+
+.card--post .tag {
+  transition: transform var(--transition-base);
+}
+
+.card--post .tag:hover {
+  transform: scale(1.05);
+}
+
+/* Projects Section */
+.card--project {
+  transition: transform var(--transition-base);
+}
+
+.card--project:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+}
+
+/* Responsive adjustments */
+@media (max-width: var(--breakpoint-md)) {
+  .hero-section {
+    padding: var(--space-6) 0;
+  }
+  
+  .hero-title {
+    font-size: calc(var(--font-size-h1) - 4px);
+  }
+  
+  [data-lang="en-US"] .hero-title {
+    font-size: var(--font-size-h1);
+  }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+  .hero-title {
+    font-size: var(--font-size-h2);
+    text-align: center;
+  }
+  
+  [data-lang="en-US"] .hero-title {
+    font-size: calc(var(--font-size-h2) + 2px);
+  }
+  
+  .hero-subtitle {
+    text-align: center;
+  }
+  
+  .hero-avatar {
+    margin-top: var(--space-4);
+  }
+}

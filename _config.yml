@@ -1,0 +1,64 @@
+# ===========================================
+# Elegance Pro Theme Configuration
+# ===========================================
+
+# -------------------------------------------
+# Theme Mode Settings
+# -------------------------------------------
+theme_mode: auto # day | night | auto
+
+# -------------------------------------------
+# Language Settings
+# -------------------------------------------
+language: auto # zh-CN | en-US | auto
+
+# -------------------------------------------
+# Font Strategy
+# -------------------------------------------
+font_strategy: optional # swap | optional | block
+
+# -------------------------------------------
+# Glass Effect
+# -------------------------------------------
+glass_effect: true # Auto downgrade based on device capability
+
+# -------------------------------------------
+# Performance Settings
+# -------------------------------------------
+performance:
+  image_lazyload: true
+  image_formats: [webp, avif]
+  js_bundle: false
+  css_purge: true
+
+# -------------------------------------------
+# Internationalization
+# -------------------------------------------
+i18n:
+  default_lang: zh-CN
+  available_langs: [zh-CN, en-US]
+  auto_detect: true
+
+# -------------------------------------------
+# Components Switch
+# -------------------------------------------
+components:
+  reading_progress: true
+  back_to_top: true
+  toc: true
+  comments: false
+  language_switcher: true
+
+# -------------------------------------------
+# Social Links
+# -------------------------------------------
+social:
+  github: "https://github.com/username"
+  twitter: "https://twitter.com/username"
+  email: "mailto:me@example.com"
+
+# -------------------------------------------
+# Analytics (Optional)
+# -------------------------------------------
+analytics:
+  plausible: "https://plausible.io/js/plausible.js"

@@ -1,6 +1,11 @@
 .trae
 .vscode
 node_modules/
+public/
+.deploy*/
+.DS_Store
+Thumbs.db
+*.log
 **/node_modules
 **/*.log
 **/.env
