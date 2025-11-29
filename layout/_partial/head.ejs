@@ -5,6 +5,10 @@
     : theme.theme_mode || 'day';
     
   const lang = theme.i18n.default_lang || 'zh-CN';
+  
+  // Analytics config
+  const analytics = theme.analytics || {};
+  const seo = theme.seo || {};
 %>
 
 <head>
@@ -16,6 +20,18 @@
   <title><%= page.title ? page.title + ' - ' + config.title : config.title %></title>
   <meta name="description" content="<%= page.description || config.description %>">
   <meta name="keywords" content="<%= page.keywords || config.keywords %>">
+  
+  <% if (seo.google_verification) { %>
+  <meta name="google-site-verification" content="<%= seo.google_verification %>" />
+  <% } %>
+  
+  <% if (seo.baidu_verification) { %>
+  <meta name="baidu-site-verification" content="<%= seo.baidu_verification %>" />
+  <% } %>
+  
+  <% if (seo.bing_verification) { %>
+  <meta name="msvalidate.01" content="<%= seo.bing_verification %>" />
+  <% } %>
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -31,7 +47,16 @@
   <meta property="twitter:title" content="<%= page.title ? page.title + ' - ' + config.title : config.title %>">
   <meta property="twitter:description" content="<%= page.description || config.description %>">
   <meta property="twitter:image" content="<%= config.url %>/images/og-image.jpg">
-  <meta property="twitter:site" content="@<%= config.author %>">
+  <% if (seo.twitter_site) { %>
+  <meta property="twitter:site" content="<%= seo.twitter_site %>">
+  <% } %>
+  <% if (seo.twitter_creator) { %>
+  <meta property="twitter:creator" content="<%= seo.twitter_creator %>">
+  <% } %>
+  
+  <!-- Sitemap & Feed -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <link rel="alternate" type="application/atom+xml" title="<%= config.title %>" href="/atom.xml" />
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -63,6 +88,84 @@
       document.documentElement.setAttribute('data-lang', lang);
     })();
   </script>
+  
+  <!-- Analytics -->
+  <!-- Baidu Analytics -->
+  <% if (analytics.baidu) { %>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?<%= analytics.baidu %>";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <% } %>
+  
+  <!-- Google Analytics -->
+  <% if (analytics.google) { %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= analytics.google %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '<%= analytics.google %>');
+  </script>
+  <% } %>
+  
+  <!-- Umami Analytics -->
+  <% if (analytics.umami) { %>
+  <script async defer src="https://analytics.umami.is/script.js" data-website-id="<%= analytics.umami %>"></script>
+  <% } %>
+  
+  <!-- Plausible Analytics -->
+  <% if (analytics.plausible) { %>
+  <script defer data-domain="<%= config.url.replace('https://', '').replace('http://', '') %>" src="<%= analytics.plausible %>"></script>
+  <% } %>
+  
+  <!-- Clarity Analytics -->
+  <% if (analytics.clarity) { %>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "<%= analytics.clarity %>");
+  </script>
+  <% } %>
+  
+  <!-- Matomo Analytics -->
+  <% if (analytics.matomo && analytics.matomo.url && analytics.matomo.site_id) { %>
+  <script type="text/javascript">
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="<%= analytics.matomo.url %>";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '<%= analytics.matomo.site_id %>']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <% } %>
+  
+  <!-- 51.la Analytics -->
+  <% if (analytics.la51) { %>
+  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+  <script>LA.init({id: "<%= analytics.la51 %>",ck: "auto"})</script>
+  <% } %>
+  
+  <!-- Ackee Analytics -->
+  <% if (analytics.ackee) { %>
+  <script async src="<%= analytics.ackee %>/tracker.js" data-ackee-server="<%= analytics.ackee %>" data-ackee-domain-id="<%= config.url.replace('https://', '').replace('http://', '') %>"></script>
+  <% } %>
+  
+  <!-- Bing Webmaster -->
+  <% if (analytics.bing) { %>
+  <meta name="msvalidate.01" content="<%= analytics.bing %>" />
+  <% } %>
   
   <!-- Main CSS -->
   <link rel="stylesheet" href="/css/main.css">

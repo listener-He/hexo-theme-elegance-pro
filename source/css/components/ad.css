@@ -1,0 +1,38 @@
+/* ===========================================
+ * Ad Component Styles
+ * =========================================== */
+
+.ad-container {
+  margin: var(--space-4) 0;
+  text-align: center;
+}
+
+.ad-container ins {
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* Responsive ad container */
+@media (max-width: var(--breakpoint-md)) {
+  .ad-container {
+    margin: var(--space-3) 0;
+  }
+}
+
+/* Ad placeholder for development */
+.ad-placeholder {
+  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+  border: 1px dashed #ccc;
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* Hide ads for print */
+@media print {
+  .ad-container {
+    display: none;
+  }
+}

@@ -82,4 +82,63 @@ social:
 # Analytics (Optional)
 # -------------------------------------------
 analytics:
+  # 常用分析平台配置
+  baidu: "" # 百度统计 ID
+  google: "" # Google Analytics ID
+  bing: "" # Bing Webmaster ID
+  clarity: "" # Microsoft Clarity ID
+  umami: "" # Umami Analytics ID
+  matomo: 
+    url: "" # Matomo URL
+    site_id: "" # Matomo Site ID
+  
+  # 其他分析平台
   plausible: "https://plausible.io/js/plausible.js"
+  ackee: "" # Ackee Analytics ID
+  la51: "" # 51.la ID
+
+# -------------------------------------------
+# SEO Settings
+# -------------------------------------------
+seo:
+  # 站点验证
+  google_verification: ""
+  bing_verification: ""
+  baidu_verification: ""
+  
+  # 结构化数据
+  structured_data: true
+  
+  # Open Graph
+  open_graph: true
+  
+  # Twitter Card
+  twitter_card: true
+  twitter_site: ""
+  twitter_creator: ""
+
+# -------------------------------------------
+# Sitemap & Feed
+# -------------------------------------------
+sitemap:
+  path: sitemap.xml
+  template: ./sitemap.xml
+  
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub: ""
+  content: true
+  
+# -------------------------------------------
+# Ads Settings
+# -------------------------------------------
+ads:
+  # Google AdSense
+  adsense:
+    client: ""
+    slot: ""
+  
+  # 其他广告平台
+  custom: ""
