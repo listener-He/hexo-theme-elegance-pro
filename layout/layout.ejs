@@ -7,19 +7,24 @@
   <a href="#main-content" class="sr-only skip-link">跳转到主要内容</a>
   
   <!-- Header -->
-  <header class="site-header">
-    <!-- Navigation will go here -->
-  </header>
+  <%- partial('_partial/header') %>
   
-  <!-- Main content -->
-  <main id="main-content">
-    <%- body %>
-  </main>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Author Sidebar -->
+      <aside class="col-lg-3 d-none d-lg-block">
+        <%- partial('_partial/author-sidebar') %>
+      </aside>
+      
+      <!-- Main content -->
+      <main id="main-content" class="col-lg-9">
+        <%- body %>
+      </main>
+    </div>
+  </div>
   
   <!-- Footer -->
-  <footer class="site-footer">
-    <!-- Footer content will go here -->
-  </footer>
+  <%- partial('_partial/footer') %>
   
   <!-- Theme switcher -->
   <button class="theme-toggle btn btn--icon" aria-label="切换主题">

@@ -2,55 +2,59 @@
 
 <% block content %>
 <div class="not-found-page py-5">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 text-center">
-        <!-- 404 Graphic -->
-        <div class="not-found-graphic mb-5">
-          <div class="error-number gradient-text mb-4" 
-               style="font-size: 10rem; font-weight: 800; line-height: 1;"
-               data-text-zh="404" 
-               data-text-en="404">
-            404
-          </div>
-        </div>
-        
-        <!-- Content -->
-        <div class="not-found-content">
-          <h1 class="not-found-title h2 mb-3" 
-              data-i18n="404.title"
-              data-text-zh="页面迷路了"
-              data-text-en="Page Not Found">
-            页面迷路了
-          </h1>
-          
-          <p class="not-found-subtitle text-muted mb-4" 
-             data-i18n="404.subtitle"
-             data-text-zh="看起来这个页面不存在"
-             data-text-en="The page you're looking for doesn't exist">
-            看起来这个页面不存在
-          </p>
-          
-          <div class="not-found-actions mb-5">
-            <a href="/" class="btn btn--gradient btn--lg me-3" 
-               data-i18n="404.backHome"
-               data-text-zh="返回首页"
-               data-text-en="Back to Home">
-              返回首页
-            </a>
-            <button class="btn btn--secondary btn--lg" onclick="history.back()" 
-                    data-i18n="common.back"
-                    data-text-zh="返回"
-                    data-text-en="Back">
-              返回
-            </button>
-          </div>
-          
-          <!-- Fun Message -->
-          <div class="fun-message mt-5 pt-4 border-top">
-            <p class="text-muted mb-0" id="fun-message-text">
-              <!-- Fun messages will be inserted here by JavaScript -->
-            </p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <!-- 404 Graphic -->
+            <div class="not-found-graphic mb-5">
+              <div class="error-number gradient-text mb-4" 
+                   style="font-size: 10rem; font-weight: 800; line-height: 1;"
+                   data-text-zh="404" 
+                   data-text-en="404">
+                404
+              </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="not-found-content">
+              <h1 class="not-found-title h2 mb-3" 
+                  data-i18n="404.title"
+                  data-text-zh="页面迷路了"
+                  data-text-en="Page Not Found">
+                页面迷路了
+              </h1>
+              
+              <p class="not-found-subtitle text-muted mb-4" 
+                 data-i18n="404.subtitle"
+                 data-text-zh="看起来这个页面不存在"
+                 data-text-en="The page you're looking for doesn't exist">
+                看起来这个页面不存在
+              </p>
+              
+              <div class="not-found-actions mb-5">
+                <a href="/" class="btn btn--gradient btn--lg me-3" 
+                   data-i18n="404.backHome"
+                   data-text-zh="返回首页"
+                   data-text-en="Back to Home">
+                  返回首页
+                </a>
+                <button class="btn btn--secondary btn--lg" onclick="history.back()" 
+                        data-i18n="common.back"
+                        data-text-zh="返回"
+                        data-text-en="Back">
+                  返回
+                </button>
+              </div>
+              
+              <!-- Fun Message -->
+              <div class="fun-message mt-5 pt-4 border-top">
+                <p class="text-muted mb-0" id="fun-message-text">
+                  <!-- Fun messages will be inserted here by JavaScript -->
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

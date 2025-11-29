@@ -8,7 +8,11 @@ export default {
     readMore: "阅读全文",
     share: "分享",
     comments: "评论",
-    home: "返回首页",
+    home: "首页",
+    about: "关于",
+    archives: "归档",
+    categories: "分类",
+    tags: "标签",
     back: "返回",
     close: "关闭"
   },

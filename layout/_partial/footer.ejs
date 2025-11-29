@@ -1,0 +1,79 @@
+<footer class="site-footer py-5" role="contentinfo">
+  <div class="container">
+    <div class="row">
+      <!-- Footer About -->
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <h3 class="footer-title h5 mb-3"><%= config.title %></h3>
+        <% if (config.description) { %>
+          <p class="footer-description text-muted">
+            <%= config.description %>
+          </p>
+        <% } %>
+        <div class="social-links mt-3">
+          <% if (theme.social) { %>
+            <% if (theme.social.github) { %>
+              <a href="<%= theme.social.github %>" class="btn btn--icon btn--glass me-2" aria-label="GitHub">
+                <span>💻</span>
+              </a>
+            <% } %>
+            <% if (theme.social.twitter) { %>
+              <a href="<%= theme.social.twitter %>" class="btn btn--icon btn--glass me-2" aria-label="Twitter">
+                <span>🐦</span>
+              </a>
+            <% } %>
+            <% if (theme.social.email) { %>
+              <a href="<%= theme.social.email %>" class="btn btn--icon btn--glass" aria-label="Email">
+                <span>✉️</span>
+              </a>
+            <% } %>
+          <% } %>
+        </div>
+      </div>
+      
+      <!-- Footer Links -->
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <h3 class="footer-title h5 mb-3" data-i18n="common.pages">页面导航</h3>
+        <ul class="footer-links list-unstyled">
+          <% 
+            // Define default navigation items
+            const defaultNavItems = [
+              { title: '首页', path: '/', i18n: 'common.home' },
+              { title: '归档', path: '/archives/', i18n: 'common.archives' },
+              { title: '分类', path: '/categories/', i18n: 'common.categories' },
+              { title: '标签', path: '/tags/', i18n: 'common.tags' },
+              { title: '关于', path: '/about/', i18n: 'common.about' }
+            ];
+
+            // Get navigation items from theme config or use defaults
+            const navItems = theme.navigation && theme.navigation.menu ? theme.navigation.menu : defaultNavItems;
+          %>
+          
+          <% navItems.forEach(item => { %>
+            <li class="mb-2">
+              <a href="<%= url_for(item.path) %>" class="text-decoration-none" <% if (item.i18n) { %>data-i18n="<%= item.i18n %>"<% } %>>
+                <%= item.title %>
+              </a>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+      
+      <!-- Footer Info -->
+      <div class="col-lg-4">
+        <h3 class="footer-title h5 mb-3" data-i18n="common.info">更多信息</h3>
+        <ul class="footer-info list-unstyled text-muted">
+          <li class="mb-2">© <%= new Date().getFullYear() %> <%= config.title %></li>
+          <li class="mb-2">Powered by <a href="https://hexo.io" class="text-decoration-none">Hexo</a></li>
+          <li class="mb-2">Theme - <a href="https://github.com/username/hexo-theme-elegance-pro" class="text-decoration-none">Elegance Pro</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Back to top -->
+    <div class="text-center mt-4 pt-4 border-top">
+      <button class="btn btn--icon back-to-top" aria-label="回到顶部">
+        <span class="back-to-top-icon">↑</span>
+      </button>
+    </div>
+  </div>
+</footer>

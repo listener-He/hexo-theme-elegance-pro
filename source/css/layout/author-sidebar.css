@@ -1,0 +1,71 @@
+/* ===========================================
+ * Author Sidebar Styles
+ * Based on Figma design specifications
+ * =========================================== */
+
+.author-sidebar {
+  position: sticky;
+  top: calc(var(--space-6) * 2);
+  align-self: start;
+  padding: var(--space-4) 0;
+}
+
+.author-card {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  box-shadow: var(--shadow-1);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.author-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.author-avatar .avatar-placeholder {
+  box-shadow: var(--shadow-1);
+  transition: box-shadow var(--transition-base);
+}
+
+.author-card:hover .author-avatar .avatar-placeholder {
+  box-shadow: var(--shadow-2);
+}
+
+.author-name {
+  color: hsl(var(--color-text-primary));
+  font-family: var(--font-title);
+  font-weight: 600;
+}
+
+.author-title {
+  font-size: var(--font-size-small);
+}
+
+.author-bio {
+  line-height: var(--line-height-relaxed);
+}
+
+.author-social-links .btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-small);
+}
+
+.author-social-links .btn:hover {
+  transform: translateY(-1px) rotate(5deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: var(--breakpoint-lg)) {
+  .author-sidebar {
+    display: none;
+  }
+}

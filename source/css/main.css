@@ -9,15 +9,32 @@
 /* Base Styles */
 @import url('./base/reset.css');
 
+/* Layout */
+@import url('./layout/header.css');
+@import url('./layout/footer.css');
+@import url('./layout/author-sidebar.css');
+
 /* Components */
 @import url('./components/button.css');
 @import url('./components/card.css');
+@import url('./components/tag.css');
+@import url('./components/progress.css');
+@import url('./components/breadcrumb.css');
+@import url('./components/pagination.css');
+@import url('./components/input.css');
 
 /* Utilities */
 @import url('./utilities/helpers.css');
 
 /* Pages */
-/* Page-specific styles will be imported here */
+@import url('./pages/index.css');
+@import url('./pages/archive.css');
+@import url('./pages/post.css');
+@import url('./pages/page.css');
+@import url('./pages/categories.css');
+@import url('./pages/tags.css');
+@import url('./pages/about.css');
+@import url('./pages/404.css');
 
 /* ===========================================
  * Global Styles

@@ -8,7 +8,11 @@ export default {
     readMore: "Read More",
     share: "Share",
     comments: "Comments",
-    home: "Back to Home",
+    home: "Home",
+    about: "About",
+    archives: "Archives",
+    categories: "Categories",
+    tags: "Tags",
     back: "Back",
     close: "Close"
   },

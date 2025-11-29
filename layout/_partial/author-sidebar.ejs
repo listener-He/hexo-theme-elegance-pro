@@ -1,0 +1,42 @@
+<aside class="author-sidebar" role="complementary" aria-label="作者信息">
+  <div class="author-card card">
+    <div class="card__body text-center">
+      <!-- Author avatar -->
+      <div class="author-avatar mb-3">
+        <div class="avatar-placeholder rounded-circle mx-auto" 
+             style="width: 100px; height: 100px; background: linear-gradient(135deg, hsl(var(--color-accent-start)), hsl(var(--color-accent-end)));">
+        </div>
+      </div>
+      
+      <!-- Author name and title -->
+      <h3 class="author-name h5 mb-1"><%= config.author || '作者名称' %></h3>
+      <p class="author-title text-muted small mb-3">全栈开发者</p>
+      
+      <!-- Author bio -->
+      <p class="author-bio small text-muted mb-3">
+        <%= config.description || '这里是一段关于作者的简短介绍。' %>
+      </p>
+      
+      <!-- Social links -->
+      <div class="author-social-links d-flex justify-content-center flex-wrap">
+        <% if (theme.social) { %>
+          <% if (theme.social.github) { %>
+            <a href="<%= theme.social.github %>" class="btn btn--icon btn--sm btn--glass me-1 mb-1" aria-label="GitHub">
+              <span>💻</span>
+            </a>
+          <% } %>
+          <% if (theme.social.twitter) { %>
+            <a href="<%= theme.social.twitter %>" class="btn btn--icon btn--sm btn--glass me-1 mb-1" aria-label="Twitter">
+              <span>🐦</span>
+            </a>
+          <% } %>
+          <% if (theme.social.email) { %>
+            <a href="<%= theme.social.email %>" class="btn btn--icon btn--sm btn--glass mb-1" aria-label="Email">
+              <span>✉️</span>
+            </a>
+          <% } %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</aside>

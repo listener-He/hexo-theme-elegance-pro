@@ -40,6 +40,27 @@ i18n:
   auto_detect: true
 
 # -------------------------------------------
+# Navigation Menu
+# -------------------------------------------
+navigation:
+  menu:
+    - title: 首页
+      path: /
+      i18n: common.home
+    - title: 归档
+      path: /archives/
+      i18n: common.archives
+    - title: 分类
+      path: /categories/
+      i18n: common.categories
+    - title: 标签
+      path: /tags/
+      i18n: common.tags
+    - title: 关于
+      path: /about/
+      i18n: common.about
+
+# -------------------------------------------
 # Components Switch
 # -------------------------------------------
 components:
