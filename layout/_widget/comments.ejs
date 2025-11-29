@@ -1,0 +1,325 @@
+<% 
+  // 评论组件 - 支持多种评论服务
+  const commentConfig = theme.comments || {};
+  const service = commentConfig.service || 'disabled';
+%>
+
+<% if (service !== 'disabled') { %>
+<div class="comments-container glass-effect theme-animate" data-component="comments">
+  <div class="comments-header">
+    <h2 class="comments-title" data-i18n="common.comments">Comments</h2>
+  </div>
+  
+  <div class="comments-body">
+    <% if (service === 'waline') { %>
+      <div id="waline-comments"></div>
+    <% } else if (service === 'disqus') { %>
+      <div id="disqus-comments"></div>
+    <% } else if (service === 'giscus') { %>
+      <div id="giscus-comments"></div>
+    <% } else if (service === 'gitalk') { %>
+      <div id="gitalk-comments"></div>
+    <% } else if (service === 'valine') { %>
+      <div id="valine-comments"></div>
+    <% } else if (service === 'twikoo') { %>
+      <div id="twikoo-comments"></div>
+    <% } else if (service === 'artalk') { %>
+      <div id="artalk-comments"></div>
+    <% } else if (service === 'utterances') { %>
+      <div id="utterances-comments"></div>
+    <% } else { %>
+      <!-- 默认评论模板 -->
+      <div class="default-comments">
+        <p data-i18n="comments.defaultMessage">当前页面暂不支持评论功能。</p>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<% if (service === 'waline') { %>
+<script>
+  // Waline 评论系统
+  document.addEventListener('DOMContentLoaded', function() {
+    const walineConfig = <%= JSON.stringify(commentConfig.waline || {}) %>;
+    if (typeof Waline === 'function' && walineConfig.serverURL) {
+      Waline.init({
+        el: '#waline-comments',
+        serverURL: walineConfig.serverURL,
+        lang: document.documentElement.getAttribute('data-lang') || 'zh-CN',
+        ...walineConfig
+      });
+    }
+  });
+</script>
+<% } else if (service === 'disqus') { %>
+<script>
+  // Disqus 评论系统
+  document.addEventListener('DOMContentLoaded', function() {
+    const disqusConfig = <%= JSON.stringify(commentConfig.disqus || {}) %>;
+    if (disqusConfig.shortname) {
+      window.disqus_config = function () {
+        this.page.url = '<%= page.permalink %>';
+        this.page.identifier = '<%= page.path %>';
+      };
+      
+      (function() {
+        const d = document, s = d.createElement('script');
+        s.src = 'https://' + disqusConfig.shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    }
+  });
+</script>
+<% } else if (service === 'giscus') { %>
+<script>
+  // Giscus 评论系统
+  document.addEventListener('DOMContentLoaded', function() {
+    const giscusConfig = <%= JSON.stringify(commentConfig.giscus || {}) %>;
+    if (giscusConfig.repo) {
+      const script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.setAttribute('data-repo', giscusConfig.repo);
+      script.setAttribute('data-repo-id', giscusConfig.repoId);
+      script.setAttribute('data-category', giscusConfig.category);
+      script.setAttribute('data-category-id', giscusConfig.categoryId);
+      script.setAttribute('data-mapping', giscusConfig.mapping || 'pathname');
+      script.setAttribute('data-reactions-enabled', giscusConfig.reactionsEnabled || '1');
+      script.setAttribute('data-emit-metadata', giscusConfig.emitMetadata || '0');
+      script.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') || 'light');
+      script.setAttribute('data-lang', document.documentElement.getAttribute('data-lang') || 'zh-CN');
+      
+      // 监听主题变化
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+            const theme = document.documentElement.getAttribute('data-theme');
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+              iframe.contentWindow.postMessage({
+                giscus: {
+                  setConfig: {
+                    theme: theme === 'night' ? 'dark' : 'light'
+                  }
+                }
+              }, 'https://giscus.app');
+            }
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+      
+      // 监听语言变化
+      const langObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-lang') {
+            const lang = document.documentElement.getAttribute('data-lang');
+            // 可以在这里添加语言相关的处理逻辑
+          }
+        });
+      });
+      
+      langObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-lang']
+      });
+      
+      document.getElementById('giscus-comments').appendChild(script);
+    }
+  });
+</script>
+<% } else if (service === 'gitalk') { %>
+<script>
+  // Gitalk 评论系统
+  document.addEventListener('DOMContentLoaded', function() {
+    const gitalkConfig = <%= JSON.stringify(commentConfig.gitalk || {}) %>;
+    if (typeof Gitalk === 'function' && gitalkConfig.clientID) {
+      const gitalk = new Gitalk({
+        clientID: gitalkConfig.clientID,
+        clientSecret: gitalkConfig.clientSecret,
+        repo: gitalkConfig.repo,
+        owner: gitalkConfig.owner,
+        admin: gitalkConfig.admin,
+        id: location.pathname,
+        distractionFreeMode: false,
+        ...gitalkConfig
+      });
+      
+      gitalk.render('gitalk-comments');
+    }
+  });
+</script>
+<% } else if (service === 'valine') { %>
+<script>
+  // Valine 评论系统
+  document.addEventListener('DOMContentLoaded', function() {
+    const valineConfig = <%= JSON.stringify(commentConfig.valine || {}) %>;
+    if (typeof Valine === 'function' && valineConfig.appid) {
+      new Valine({
+        el: '#valine-comments',
+        appId: valineConfig.appid,
+        appKey: valineConfig.appkey,
+        ...valineConfig
+      });
+    }
+  });
+</script>
+<% } else if (service === 'twikoo') { %>
+<script>
+  // Twikoo 评论系统
+  document.addEventListener('DOMContentLoaded', function() {
+    const twikooConfig = <%= JSON.stringify(commentConfig.twikoo || {}) %>;
+    if (typeof twikoo === 'object' && twikooConfig.envId) {
+      twikoo.init({
+        envId: twikooConfig.envId,
+        el: '#twikoo-comments',
+        ...twikooConfig
+      });
+    }
+  });
+</script>
+<% } else if (service === 'artalk') { %>
+<script>
+  // Artalk 评论系统
+  document.addEventListener('DOMContentLoaded', function() {
+    const artalkConfig = <%= JSON.stringify(commentConfig.artalk || {}) %>;
+    if (typeof Artalk === 'function' && artalkConfig.server) {
+      new Artalk({
+        el: '#artalk-comments',
+        server: artalkConfig.server,
+        site: artalkConfig.site,
+        ...artalkConfig
+      });
+    }
+  });
+</script>
+<% } else if (service === 'utterances') { %>
+<script>
+  // Utterances 评论系统
+  document.addEventListener('DOMContentLoaded', function() {
+    const utterancesConfig = <%= JSON.stringify(commentConfig.utterances || {}) %>;
+    if (utterancesConfig.repo) {
+      const script = document.createElement('script');
+      script.src = 'https://utteranc.es/client.js';
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.setAttribute('repo', utterancesConfig.repo);
+      script.setAttribute('issue-term', utterancesConfig.issueTerm || 'pathname');
+      script.setAttribute('theme', document.documentElement.getAttribute('data-theme') === 'night' ? 'github-dark' : 'github-light');
+      script.setAttribute('label', utterancesConfig.label || 'comment');
+      
+      // 监听主题变化
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+            const theme = document.documentElement.getAttribute('data-theme');
+            const iframe = document.querySelector('iframe.utterances-frame');
+            if (iframe) {
+              iframe.contentWindow.postMessage({
+                type: 'set-theme',
+                theme: theme === 'night' ? 'github-dark' : 'github-light'
+              }, 'https://utteranc.es');
+            }
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+      
+      // 监听语言变化
+      const langObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-lang') {
+            const lang = document.documentElement.getAttribute('data-lang');
+            // 可以在这里添加语言相关的处理逻辑
+          }
+        });
+      });
+      
+      langObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-lang']
+      });
+      
+      document.getElementById('utterances-comments').appendChild(script);
+    }
+  });
+</script>
+<% } %>
+
+<style>
+.comments-container {
+  margin: var(--space-12) 0;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  border: var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-1);
+  transition: var(--transition-theme);
+}
+
+.comments-container:hover {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+.comments-header {
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid hsl(var(--color-border-primary));
+}
+
+.comments-title {
+  font-size: var(--font-size-h2);
+  font-family: var(--font-title);
+  background: linear-gradient(90deg, 
+    hsl(var(--color-accent-start)), 
+    hsl(var(--color-accent-end))
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+/* Waline 样式适配 */
+#waline-comments {
+  --waline-theme-color: hsl(var(--color-accent-start));
+  --waline-active-color: hsl(var(--color-accent-end));
+  --waline-font-size: var(--font-size-body);
+  --waline-bgcolor: hsl(var(--color-bg-tertiary));
+  --waline-bgcolor-light: hsl(var(--color-bg-secondary));
+  --waline-border-color: hsl(var(--color-border-primary));
+  --waline-text-color: hsl(var(--color-text-primary));
+  --waline-info-color: hsl(var(--color-text-secondary));
+}
+
+[data-theme="night"] #waline-comments {
+  --waline-bgcolor: hsl(var(--color-bg-secondary));
+  --waline-bgcolor-light: hsl(var(--color-bg-tertiary));
+}
+
+/* Disqus 样式适配 */
+#disqus-comments {
+  min-height: 200px;
+}
+
+/* 默认评论样式 */
+.default-comments {
+  text-align: center;
+  padding: var(--space-8) 0;
+  color: hsl(var(--color-text-secondary));
+}
+</style>
+<% } %>
