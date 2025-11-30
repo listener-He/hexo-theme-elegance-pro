@@ -1,42 +1,41 @@
-<%
-  // Define default navigation items
-  const defaultNavItems = [
-    { title: '首页', path: '/', i18n: 'common.home' },
-    { title: '归档', path: '/archives/', i18n: 'common.archives' },
-    { title: '分类', path: '/categories/', i18n: 'common.categories' },
-    { title: '标签', path: '/tags/', i18n: 'common.tags' },
-    { title: '关于', path: '/about/', i18n: 'common.about' }
-  ];
-
-  // Get navigation items from theme config or use defaults
-  const navItems = theme.navigation && theme.navigation.menu ? theme.navigation.menu : defaultNavItems;
-%>
-
 <header class="site-header" role="banner">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center py-3">
-      <!-- Logo/Site Title -->
+    <div class="d-flex align-items-center justify-content-between">
+      <!-- Site Branding -->
       <div class="site-branding">
-        <h1 class="site-title h4 mb-0">
+        <h1 class="site-title h5 mb-0">
           <a href="<%= url_for() %>" class="text-decoration-none">
             <%= config.title %>
           </a>
         </h1>
-        <% if (config.subtitle) { %>
+        <% if (config.description) { %>
           <p class="site-description small text-muted mb-0">
-            <%= config.subtitle %>
+            <%= config.description %>
           </p>
         <% } %>
       </div>
       
-      <!-- Navigation -->
-      <nav class="site-navigation" role="navigation" aria-label="主导航">
-        <ul class="nav-list d-flex mb-0">
+      <!-- Desktop Navigation -->
+      <nav class="site-navigation d-none d-lg-block" role="navigation">
+        <ul class="nav-list d-flex align-items-center list-unstyled mb-0">
+          <% 
+            // Define default navigation items
+            const defaultNavItems = [
+              { title: '首页', path: '/', i18n: 'common.home', icon: 'home' },
+              { title: '归档', path: '/archives/', i18n: 'common.archives', icon: 'archive' },
+              { title: '分类', path: '/categories/', i18n: 'common.categories', icon: 'folder' },
+              { title: '标签', path: '/tags/', i18n: 'common.tags', icon: 'tag' },
+              { title: '关于', path: '/about/', i18n: 'common.about', icon: 'user' }
+            ];
+
+            // Get navigation items from theme config or use defaults
+            const navItems = theme.navigation && theme.navigation.menu ? theme.navigation.menu : defaultNavItems;
+          %>
+          
           <% navItems.forEach(item => { %>
             <li class="nav-item">
-              <a href="<%= url_for(item.path) %>" 
-                 class="nav-link <%= page.path === item.path ? 'active' : '' %>"
-                 <% if (item.i18n) { %>data-i18n="<%= item.i18n %>"<% } %>>
+              <a href="<%= url_for(item.path) %>" class="nav-link text-decoration-none d-flex align-items-center <%= is_current(item.path, 'active') %>" <% if (item.i18n) { %>data-i18n="<%= item.i18n %>"<% } %>>
+                <%- iconManager.renderIcon(item.icon, { size: 16, className: 'me-1' }) %>
                 <%= item.title %>
               </a>
             </li>
@@ -44,9 +43,9 @@
         </ul>
       </nav>
       
-      <!-- Mobile menu button -->
-      <button class="mobile-menu-toggle btn btn--icon d-lg-none" aria-label="切换菜单">
-        <span class="menu-icon">☰</span>
+      <!-- Mobile menu toggle -->
+      <button class="mobile-menu-toggle btn btn--icon d-lg-none" type="button" aria-label="切换菜单" data-i18n="[aria-label]common.menu">
+        <%- iconManager.renderIcon('menu', { size: 20 }) %>
       </button>
     </div>
   </div>

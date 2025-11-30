@@ -1,86 +1,35 @@
 <!DOCTYPE html>
-<html data-theme="day" data-lang="zh-CN">
-<%- partial('_partial/head') %>
-
-<body>
-  <!-- Skip to content link for accessibility -->
-  <a href="#main-content" class="sr-only skip-link">跳转到主要内容</a>
+<html lang="<%= page.lang || 'zh-CN' %>" data-theme="<%= theme.theme || 'day' %>">
+<%- partial('_partial/head.ejs') %>
+<body class="site-body">
+  <!-- Google Analytics -->
+  <%- partial('_partial/analytics.ejs') %>
   
-  <!-- Custom Body Start Injections -->
-  <% if (theme.injections && theme.injections.bodyStart) { %>
-    <% theme.injections.bodyStart.forEach(injection => { %>
-      <% if (injection.type === 'html') { %>
-  <%= injection.content %>
-      <% } %>
-    <% }); %>
+  <!-- Site Header -->
+  <%- partial('_partial/header.ejs') %>
+  
+  <!-- Main Content -->
+  <main class="site-main" role="main">
+    <%- body %>
+  </main>
+  
+  <!-- Author Sidebar (only show on post pages) -->
+  <% if (page.layout === 'post' || page.layout === 'page') { %>
+    <%- partial('_partial/author-sidebar.ejs') %>
   <% } %>
   
-  <!-- Header -->
-  <%- partial('_partial/header') %>
+  <!-- Site Footer -->
+  <%- partial('_partial/footer.ejs') %>
   
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Author Sidebar -->
-      <aside class="col-lg-3 d-none d-lg-block">
-        <%- partial('_partial/author-sidebar') %>
-      </aside>
-      
-      <!-- Main content -->
-      <main id="main-content" class="col-lg-9">
-        <%- body %>
-      </main>
-    </div>
-  </div>
-  
-  <!-- Footer -->
-  <%- partial('_partial/footer') %>
-  
-  <!-- Custom Body End Injections -->
-  <% if (theme.injections && theme.injections.bodyEnd) { %>
-    <% theme.injections.bodyEnd.forEach(injection => { %>
-      <% if (injection.type === 'html') { %>
-  <%= injection.content %>
-      <% } %>
-    <% }); %>
+  <!-- Back to Top Button -->
+  <% if (theme.components.back_to_top) { %>
+    <%- partial('_widget/back-to-top.ejs') %>
   <% } %>
   
-  <!-- Theme switcher -->
-  <button class="theme-toggle btn btn--icon" aria-label="切换主题">
-    <span class="theme-toggle-icon">🌙</span>
-  </button>
-  
-  <!-- Language switcher -->
-  <button class="lang-toggle btn btn--icon" data-action="toggle-lang" aria-label="切换语言">
-    <span class="lang-toggle-icon">🌐</span>
-  </button>
-  
-  <!-- Back to top button -->
-  <button class="back-to-top btn btn--icon" aria-label="回到顶部">
-    <span class="back-to-top-icon">↑</span>
-  </button>
-  
-  <!-- Main JavaScript -->
+  <!-- Scripts -->
   <script src="/js/main.js"></script>
   
-  <!-- Custom Footer Injections -->
-  <% if (theme.injections && theme.injections.footer) { %>
-    <% theme.injections.footer.forEach(injection => { %>
-      <% if (injection.type === 'script') { %>
-        <% if (injection.src) { %>
-  <script src="<%= injection.src %>"<%= injection.async ? ' async' : '' %><%= injection.defer ? ' defer' : '' %>></script>
-        <% } else { %>
-  <script<%= injection.async ? ' async' : '' %><%= injection.defer ? ' defer' : '' %>><%= injection.content %></script>
-        <% } %>
-      <% } else if (injection.type === 'style') { %>
-        <% if (injection.href) { %>
-  <link rel="stylesheet" href="<%= injection.href %>">
-        <% } else { %>
-  <style><%= injection.content %></style>
-        <% } %>
-      <% } else if (injection.type === 'html') { %>
-  <%= injection.content %>
-      <% } %>
-    <% }); %>
-  <% } %>
+  <!-- Custom injections -->
+  <%- partial('_partial/injections.ejs') %>
 </body>
 </html>

@@ -27,63 +27,16 @@ class IconManager {
       console.log('Icon system initialized successfully');
     } catch (error) {
       console.warn('Failed to initialize icon system:', error);
-      this._loadFallbackIcons();
     }
-  }
-
-  /**
-   * Load fallback emoji icons
-   * @private
-   */
-  _loadFallbackIcons() {
-    const defaultIcons = {
-      'github': '💻',
-      'twitter': '🐦',
-      'email': '✉️',
-      'facebook': '📘',
-      'linkedin': '💼',
-      'instagram': '📸',
-      'youtube': '📺',
-      'wechat': '💬',
-      'weibo': '📢',
-      'zhihu': '知',
-      'douban': '豆',
-      'reddit': '🐰',
-      'pinterest': '📌',
-      'tumblr': 'ⓣ',
-      'snapchat': '👻',
-      'whatsapp': '💬',
-      'telegram': '✈️',
-      'discord': '🔊',
-      'home': '🏠',
-      'archive': '📚',
-      'folder': '📁',
-      'tag': '🏷️',
-      'calendar': '📅',
-      'search': '🔍',
-      'arrow-up': '↑',
-      'menu': '☰',
-      'close': '✕',
-      'link': '🔗',
-      'clock': '🕒',
-      'user': '👤',
-      'rss': '📡'
-    };
-
-    Object.entries(defaultIcons).forEach(([name, icon]) => {
-      this.icons.set(name, icon);
-    });
-
-    this.loaded = true;
   }
 
   /**
    * Get icon by name
    * @param {string} name - Icon name
-   * @returns {ReactComponent|string} Icon component or character
+   * @returns {string} Icon component or character
    */
   getIcon(name) {
-    return this.icons.get(name) || '🔹';
+    return this.icons.get(name) || 'default';
   }
 
   /**
@@ -93,18 +46,12 @@ class IconManager {
    * @returns {string} HTML string for the icon
    */
   renderIcon(name, options = {}) {
-    const icon = this.getIcon(name);
     const className = options.className || '';
     const size = options.size || 24;
     const ariaLabel = options.ariaLabel || name;
-    
-    // If it's an emoji-like icon
-    if (icon.length <= 2) {
-      return `<span class="icon icon-${name} ${className}" aria-hidden="true">${icon}</span>`;
-    }
-    
-    // If it's a Tabler Icon name, create a placeholder for rendering
-    return `<span class="icon icon-${name} ${className}" data-icon="${name}" style="display:inline-block;width:${size}px;height:${size}px;"></span>`;
+
+    // Create a placeholder for rendering
+    return `<span class="icon icon-${name} ${className}" data-icon="${name}" style="display:inline-block;width:${size}px;height:${size}px;" aria-label="${ariaLabel}"></span>`;
   }
 }
 

@@ -77,15 +77,15 @@ social:
   links:
     - name: github
       url: "https://github.com/username"
-      icon: "💻"
+      icon: "github"
       i18n: social.github
     - name: twitter
       url: "https://twitter.com/username"
-      icon: "🐦"
+      icon: "twitter"
       i18n: social.twitter
     - name: email
       url: "mailto:me@example.com"
-      icon: "✉️"
+      icon: "email"
       i18n: social.email
   # For backward compatibility, you can still use the old format:
   # github: "https://github.com/username"
