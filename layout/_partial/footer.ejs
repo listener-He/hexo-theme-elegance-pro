@@ -23,39 +23,15 @@
                 .map(key => ({
                   name: key,
                   url: theme.social[key],
-                  icon: getSocialIcon(key),
+                  icon: key,
                   i18n: `social.${key}`
                 }));
-            }
-            
-            function getSocialIcon(name) {
-              const iconMap = {
-                'github': '💻',
-                'twitter': '🐦',
-                'email': '✉️',
-                'facebook': '📘',
-                'linkedin': '💼',
-                'instagram': '📸',
-                'youtube': '📺',
-                'wechat': '💬',
-                'weibo': '📢',
-                'zhihu': '知',
-                'douban': '豆',
-                'reddit': '🐰',
-                'pinterest': '📌',
-                'tumblr': 'ⓣ',
-                'snapchat': '👻',
-                'whatsapp': '💬',
-                'telegram': '✈️',
-                'discord': '🔊'
-              };
-              return iconMap[name] || '🔗';
             }
           %>
           
           <% socialLinks.forEach(link => { %>
             <a href="<%= link.url %>" class="btn btn--icon btn--glass me-2" <% if (link.i18n) { %>aria-label="<%= link.name %>" data-i18n="<%= link.i18n %>"<% } else { %>aria-label="<%= link.name %>"<% } %>>
-              <span><%= link.icon %></span>
+              <%- iconManager.renderIcon(link.icon, { size: 20 }) %>
             </a>
           <% }); %>
         </div>
@@ -68,11 +44,11 @@
           <% 
             // Define default navigation items
             const defaultNavItems = [
-              { title: '首页', path: '/', i18n: 'common.home' },
-              { title: '归档', path: '/archives/', i18n: 'common.archives' },
-              { title: '分类', path: '/categories/', i18n: 'common.categories' },
-              { title: '标签', path: '/tags/', i18n: 'common.tags' },
-              { title: '关于', path: '/about/', i18n: 'common.about' }
+              { title: '首页', path: '/', i18n: 'common.home', icon: 'home' },
+              { title: '归档', path: '/archives/', i18n: 'common.archives', icon: 'archive' },
+              { title: '分类', path: '/categories/', i18n: 'common.categories', icon: 'folder' },
+              { title: '标签', path: '/tags/', i18n: 'common.tags', icon: 'tag' },
+              { title: '关于', path: '/about/', i18n: 'common.about', icon: 'user' }
             ];
 
             // Get navigation items from theme config or use defaults
@@ -82,6 +58,7 @@
           <% navItems.forEach(item => { %>
             <li class="mb-2">
               <a href="<%= url_for(item.path) %>" class="text-decoration-none" <% if (item.i18n) { %>data-i18n="<%= item.i18n %>"<% } %>>
+                <%- iconManager.renderIcon(item.icon, { size: 16, className: 'me-1' }) %>
                 <%= item.title %>
               </a>
             </li>
@@ -103,7 +80,7 @@
     <!-- Back to top -->
     <div class="text-center mt-4 pt-4 border-top">
       <button class="btn btn--icon back-to-top" aria-label="回到顶部" data-i18n="common.back">
-        <span class="back-to-top-icon">↑</span>
+        <%- iconManager.renderIcon('arrow-up', { size: 20 }) %>
       </button>
     </div>
   </div>

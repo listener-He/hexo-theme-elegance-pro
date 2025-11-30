@@ -1,61 +1,39 @@
-/**
- * Main JavaScript Entry Point
- * Imports all required modules and initializes components
- */
-
-// Import managers
+// Import modules
 import './managers/theme-manager.js';
-import './managers/i18n-manager.js';
 import './managers/injection-manager.js';
-
-// Import utilities
-// Additional utilities can be imported here
-
-// Document ready function
-function ready(fn) {
-  if (document.readyState !== 'loading') {
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
-}
+import IconManager from './icon-manager.js';
+import IconRenderer from './components/icon-renderer.js';
 
 // Initialize when DOM is ready
-ready(function() {
-  console.log('Elegance Pro theme initialized');
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize icon manager
+  window.iconManager = new IconManager();
+  window.iconRenderer = new IconRenderer();
   
-  // Initialize theme manager
-  if (window.themeManager) {
-    console.log('Theme manager initialized');
-  }
-  
-  // Initialize i18n manager
-  if (window.i18n) {
-    console.log('I18n manager initialized');
-  }
-  
-  // Initialize injection manager
-  if (window.injectionManager) {
-    console.log('Injection manager initialized');
-  }
-  
-  // Bind event listeners for theme toggle
-  const themeToggle = document.querySelector('.theme-toggle');
-  if (themeToggle && window.themeManager) {
-    themeToggle.addEventListener('click', () => {
-      window.themeManager.toggleTheme();
-    });
-  }
-  
-  // Bind event listeners for back to top button
+  iconManager.loadIcons([
+    'github', 'twitter', 'email', 'facebook', 'linkedin', 'instagram',
+    'youtube', 'wechat', 'weibo', 'zhihu', 'douban', 'reddit',
+    'pinterest', 'tumblr', 'snapchat', 'whatsapp', 'telegram', 'discord',
+    'home', 'archive', 'folder', 'tag', 'calendar', 'search',
+    'arrow-up', 'menu', 'close', 'link', 'clock', 'user', 'rss'
+  ]).then(() => {
+    console.log('Icons loaded successfully');
+    // Replace placeholder elements with actual icons
+    renderTablerIcons();
+  }).catch(err => {
+    console.warn('Failed to load icons:', err);
+  });
+
+  // Back to top button functionality
   const backToTopButton = document.querySelector('.back-to-top');
+  
   if (backToTopButton) {
     // Show/hide button based on scroll position
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
-        backToTopButton.classList.add('is-visible');
+        backToTopButton.classList.remove('is-hidden');
       } else {
-        backToTopButton.classList.remove('is-visible');
+        backToTopButton.classList.add('is-hidden');
       }
     });
     
@@ -96,4 +74,18 @@ function initScrollAnimations() {
       el.classList.add('is-visible');
     });
   }
+}
+
+// Render Tabler Icons
+function renderTablerIcons() {
+  const iconPlaceholders = document.querySelectorAll('[data-icon]');
+  
+  iconPlaceholders.forEach((placeholder) => {
+    const iconName = placeholder.getAttribute('data-icon');
+    const size = placeholder.style.width ? parseInt(placeholder.style.width) : 24;
+    
+    // Use our icon renderer to generate the SVG
+    const iconHTML = iconRenderer.render(iconName, { size: size });
+    placeholder.innerHTML = iconHTML;
+  });
 }

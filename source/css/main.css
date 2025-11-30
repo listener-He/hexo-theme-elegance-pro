@@ -1,61 +1,92 @@
 /* ===========================================
  * Main Stylesheet
- * Import all CSS modules
  * =========================================== */
 
-/* Design Tokens */
-@import url('./_tokens.css');
+/* Import core tokens */
+@import "_tokens.css";
 
-/* Base Styles */
-@import url('./base/reset.css');
+/* Import components */
+@import "components/button.css";
+@import "components/card.css";
+@import "components/input.css";
+@import "components/badge.css";
 
-/* Layout */
-@import url('./layout/header.css');
-@import url('./layout/footer.css');
-@import url('./layout/author-sidebar.css');
+/* Import layout */
+@import "layout/header.css";
+@import "layout/footer.css";
+@import "layout/author-sidebar.css";
 
-/* Components */
-@import url('./components/button.css');
-@import url('./components/card.css');
-@import url('./components/tag.css');
-@import url('./components/progress.css');
-@import url('./components/breadcrumb.css');
-@import url('./components/pagination.css');
-@import url('./components/input.css');
-@import url('./components/ad.css');
+/* Import pages */
+@import "pages/index.css";
+@import "pages/post.css";
+@import "pages/archives.css";
+@import "pages/categories.css";
+@import "pages/tags.css";
+@import "pages/about.css";
+@import "pages/projects.css";
+@import "pages/friends.css";
+@import "pages/page.css";
+@import "pages/404.css";
 
-/* Utilities */
-@import url('./utilities/helpers.css');
+/* Import utilities */
+@import "utilities/helpers.css";
+@import "utilities/animations.css";
 
-/* Pages */
-@import url('./pages/index.css');
-@import url('./pages/archive.css');
-@import url('./pages/post.css');
-@import url('./pages/page.css');
-@import url('./pages/categories.css');
-@import url('./pages/tags.css');
-@import url('./pages/about.css');
-@import url('./pages/404.css');
+/* ===========================================
+ * Icon Styles
+ * =========================================== */
+.icon {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Tabler Icons styling */
+.icon-tabler {
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Back to top icon */
+.back-to-top-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Social icons */
+.social-links .btn .icon,
+.author-social-links .btn .icon {
+  font-size: 1.2em;
+}
+
+/* Navigation icons */
+.footer-links .icon {
+  margin-right: 0.5rem;
+}
 
 /* ===========================================
  * Global Styles
  * =========================================== */
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Selection highlight */
+::-moz-selection {
+  color: white;
+  background: hsl(var(--color-accent-start));
 }
 
-/* Selection color */
 ::selection {
-  background-color: hsl(var(--color-accent-start) / 0.2);
-  color: hsl(var(--color-text-primary));
+  color: white;
+  background: hsl(var(--color-accent-start));
 }
 
-/* Scrollbar styling (WebKit browsers) */
+/* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -64,85 +95,31 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--color-border-primary));
-  border-radius: var(--radius-sm);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--color-text-tertiary));
+  background: hsl(var(--color-accent-start));
 }
 
-/* Gradient text helper */
-.gradient-text {
-  background: linear-gradient(90deg, 
-    hsl(var(--color-accent-start)), 
-    hsl(var(--color-accent-end)));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-}
-
-/* Fix for Safari gradient text jagged edges */
-.gradient-text::after {
-  content: attr(data-text-zh);
-  position: absolute;
-  top: 0; 
-  left: 0;
-  z-index: -1;
-  -webkit-text-fill-color: hsl(var(--color-accent-start) / 0.03);
-}
-
-[data-lang="en-US"] .gradient-text::after {
-  content: attr(data-text-en);
-}
-
-/* Container */
-.container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: var(--space-4);
-  padding-left: var(--space-4);
-}
-
-@media (min-width: var(--breakpoint-sm)) {
-  .container {
-    max-width: 540px;
+/* ===========================================
+ * Print Styles
+ * =========================================== */
+@media print {
+  .site-header,
+  .site-footer,
+  .author-sidebar,
+  .back-to-top {
+    display: none !important;
   }
-}
-
-@media (min-width: var(--breakpoint-md)) {
+  
   .container {
-    max-width: 720px;
+    max-width: 100% !important;
+    padding: 0 !important;
   }
-}
-
-@media (min-width: var(--breakpoint-lg)) {
-  .container {
-    max-width: 960px;
+  
+  .card {
+    box-shadow: none !important;
+    border: 1px solid hsl(var(--color-border-primary)) !important;
   }
-}
-
-@media (min-width: var(--breakpoint-xl)) {
-  .container {
-    max-width: 1140px;
-  }
-}
-
-@media (min-width: var(--breakpoint-2xl)) {
-  .container {
-    max-width: 1320px;
-  }
-}
-
-/* Animation helpers */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
-}
-
-.animate-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
 }

@@ -18,192 +18,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <!-- SEO Meta Tags -->
-  <title><%= page.title ? page.title + ' - ' + config.title : config.title %></title>
-  <meta name="description" content="<%= page.description || config.description %>">
-  <meta name="keywords" content="<%= page.keywords || config.keywords %>">
+  <title><%= config.title %></title>
   
-  <% if (seo.google_verification) { %>
-  <meta name="google-site-verification" content="<%= seo.google_verification %>" />
+  <% if (config.description) { %>
+    <meta name="description" content="<%= config.description %>">
   <% } %>
   
-  <% if (seo.baidu_verification) { %>
-  <meta name="baidu-site-verification" content="<%= seo.baidu_verification %>" />
+  <% if (config.keywords) { %>
+    <meta name="keywords" content="<%= config.keywords %>">
   <% } %>
-  
-  <% if (seo.bing_verification) { %>
-  <meta name="msvalidate.01" content="<%= seo.bing_verification %>" />
-  <% } %>
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="<%= page.title ? page.title + ' - ' + config.title : config.title %>">
-  <meta property="og:description" content="<%= page.description || config.description %>">
-  <meta property="og:image" content="<%= config.url %>/images/og-image.jpg">
-  <meta property="og:url" content="<%= config.url %><%= url_for(page.path) %>">
-  <meta property="og:site_name" content="<%= config.title %>">
-  <meta property="og:locale" content="<%= lang.replace('-', '_') %>">
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="<%= page.title ? page.title + ' - ' + config.title : config.title %>">
-  <meta property="twitter:description" content="<%= page.description || config.description %>">
-  <meta property="twitter:image" content="<%= config.url %>/images/og-image.jpg">
-  <% if (seo.twitter_site) { %>
-  <meta property="twitter:site" content="<%= seo.twitter_site %>">
-  <% } %>
-  <% if (seo.twitter_creator) { %>
-  <meta property="twitter:creator" content="<%= seo.twitter_creator %>">
-  <% } %>
-  
-  <!-- Sitemap & Feed -->
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
-  <link rel="alternate" type="application/atom+xml" title="<%= config.title %>" href="/atom.xml" />
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
   
-  <!-- Preload critical assets -->
-  <link rel="preload" href="/css/main.css" as="style">
-  <link rel="preload" href="/js/main.js" as="script">
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
-  <!-- Theme and language detection script -->
-  <script>
-    (function() {
-      // Theme detection
-      const savedTheme = localStorage.getItem('theme');
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = '<%= themeMode %>' === 'auto' 
-        ? (savedTheme || (systemDark ? 'night' : 'day'))
-        : '<%= themeMode %>';
-        
-      // Language detection
-      const savedLang = localStorage.getItem('lang');
-      const browserLang = navigator.language;
-      const lang = savedLang || (browserLang.startsWith('en') ? 'en-US' : '<%= lang %>');
-      
-      // Apply immediately to prevent flash
-      document.documentElement.setAttribute('data-theme', theme);
-      document.documentElement.setAttribute('data-lang', lang);
-      
-      // Store theme config for use by other components
-      window.themeConfig = <%- JSON.stringify(theme) %>;
-    })();
-  </script>
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#3b82f6">
   
-  <!-- Analytics -->
-  <!-- Baidu Analytics -->
-  <% if (analytics.baidu) { %>
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?<%= analytics.baidu %>";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
+  <!-- Open Graph -->
+  <meta property="og:title" content="<%= config.title %>">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= config.url %>">
+  <% if (config.description) { %>
+    <meta property="og:description" content="<%= config.description %>">
   <% } %>
   
-  <!-- Google Analytics -->
-  <% if (analytics.google) { %>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= analytics.google %>"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '<%= analytics.google %>');
-  </script>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="<%= config.title %>">
+  <% if (config.description) { %>
+    <meta name="twitter:description" content="<%= config.description %>">
   <% } %>
   
-  <!-- Umami Analytics -->
-  <% if (analytics.umami) { %>
-  <script async defer src="https://analytics.umami.is/script.js" data-website-id="<%= analytics.umami %>"></script>
-  <% } %>
-  
-  <!-- Plausible Analytics -->
-  <% if (analytics.plausible) { %>
-  <script defer data-domain="<%= config.url.replace('https://', '').replace('http://', '') %>" src="<%= analytics.plausible %>"></script>
-  <% } %>
-  
-  <!-- Clarity Analytics -->
-  <% if (analytics.clarity) { %>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "<%= analytics.clarity %>");
-  </script>
-  <% } %>
-  
-  <!-- Matomo Analytics -->
-  <% if (analytics.matomo && analytics.matomo.url && analytics.matomo.site_id) { %>
-  <script type="text/javascript">
-    var _paq = window._paq = window._paq || [];
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-      var u="<%= analytics.matomo.url %>";
-      _paq.push(['setTrackerUrl', u+'matomo.php']);
-      _paq.push(['setSiteId', '<%= analytics.matomo.site_id %>']);
-      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-      g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-    })();
-  </script>
-  <% } %>
-  
-  <!-- 51.la Analytics -->
-  <% if (analytics.la51) { %>
-  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-  <script>LA.init({id: "<%= analytics.la51 %>",ck: "auto"})</script>
-  <% } %>
-  
-  <!-- Ackee Analytics -->
-  <% if (analytics.ackee) { %>
-  <script async src="<%= analytics.ackee %>/tracker.js" data-ackee-server="<%= analytics.ackee %>" data-ackee-domain-id="<%= config.url.replace('https://', '').replace('http://', '') %>"></script>
-  <% } %>
-  
-  <!-- Bing Webmaster -->
-  <% if (analytics.bing) { %>
-  <meta name="msvalidate.01" content="<%= analytics.bing %>" />
-  <% } %>
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="<%= config.title %>" type="application/atom+xml">
   
   <!-- Main CSS -->
   <link rel="stylesheet" href="/css/main.css">
   
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "<%= config.title %>",
-      "url": "<%= config.url %>",
-      "description": "<%= config.description %>"
-    }
+  <!-- Theme config for JavaScript access -->
+  <script>
+    window.themeConfig = <%- JSON.stringify(theme) %>;
+    window.siteConfig = <%- JSON.stringify(config) %>;
   </script>
-  
-  <!-- Custom Head Injections -->
-  <% headInjections.forEach(injection => { %>
-    <% if (injection.type === 'script') { %>
-      <% if (injection.src) { %>
-  <script src="<%= injection.src %>"<%= injection.async ? ' async' : '' %><%= injection.defer ? ' defer' : '' %>></script>
-      <% } else { %>
-  <script<%= injection.async ? ' async' : '' %><%= injection.defer ? ' defer' : '' %>><%= injection.content %></script>
-      <% } %>
-    <% } else if (injection.type === 'style') { %>
-      <% if (injection.href) { %>
-  <link rel="stylesheet" href="<%= injection.href %>">
-      <% } else { %>
-  <style><%= injection.content %></style>
-      <% } %>
-    <% } else if (injection.type === 'html') { %>
-  <%= injection.content %>
-    <% } %>
-  <% }); %>
 </head>

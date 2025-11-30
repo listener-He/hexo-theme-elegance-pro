@@ -32,40 +32,16 @@
               .map(key => ({
                 name: key,
                 url: theme.social[key],
-                icon: getSocialIcon(key),
+                icon: key,
                 i18n: `social.${key}`
               }));
-          }
-          
-          function getSocialIcon(name) {
-            const iconMap = {
-              'github': '💻',
-              'twitter': '🐦',
-              'email': '✉️',
-              'facebook': '📘',
-              'linkedin': '💼',
-              'instagram': '📸',
-              'youtube': '📺',
-              'wechat': '💬',
-              'weibo': '📢',
-              'zhihu': '知',
-              'douban': '豆',
-              'reddit': '🐰',
-              'pinterest': '📌',
-              'tumblr': 'ⓣ',
-              'snapchat': '👻',
-              'whatsapp': '💬',
-              'telegram': '✈️',
-              'discord': '🔊'
-            };
-            return iconMap[name] || '🔗';
           }
         %>
         
         <% socialLinks.forEach((link, index) => { %>
           <% const marginClass = index === socialLinks.length - 1 ? 'mb-1' : 'me-1 mb-1'; %>
           <a href="<%= link.url %>" class="btn btn--icon btn--sm btn--glass <%= marginClass %>" <% if (link.i18n) { %>aria-label="<%= link.name %>" data-i18n="<%= link.i18n %>"<% } else { %>aria-label="<%= link.name %>"<% } %>>
-            <span><%= link.icon %></span>
+            <%- iconManager.renderIcon(link.icon, { size: 16 }) %>
           </a>
         <% }); %>
       </div>
