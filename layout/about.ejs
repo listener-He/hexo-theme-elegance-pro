@@ -1,4 +1,9 @@
-var config = require("hexo/dist/theme/processors/config").config;
+<%
+  // Get author information from theme config
+  const authorInfo = theme.author || {};
+  const socialLinks = theme.social.links || [];
+%>
+
 <%- extends 'layout.ejs' %>
 
 <% block content %>
@@ -10,6 +15,7 @@ var config = require("hexo/dist/theme/processors/config").config;
           <div class="card__body">
             <header class="page-header text-center mb-5">
               <h1 class="page-title gradient-text"
+                  data-i18n="about.title"
                   data-text-zh="关于我"
                   data-text-en="About Me">
                 关于我
@@ -22,8 +28,8 @@ var config = require("hexo/dist/theme/processors/config").config;
                   <div class="avatar-placeholder rounded-circle mx-auto mb-3"
                        style="width: 150px; height: 150px; background: linear-gradient(135deg, hsl(var(--color-accent-start)), hsl(var(--color-accent-end)));">
                   </div>
-                  <h2 class="h4 mb-2"><%= config.author || '作者名称' %></h2>
-                  <p class="text-muted"><%= config.title || '全栈开发者' %></p>
+                  <h2 class="h4 mb-2"><%= authorInfo.name || config.author || '作者名称' %></h2>
+                  <p class="text-muted"><%= authorInfo.title || '全栈开发者' %></p>
 
                   <div class="social-links d-flex justify-content-center flex-wrap mt-3">
                     <% socialLinks.forEach(link => { %>
@@ -36,31 +42,37 @@ var config = require("hexo/dist/theme/processors/config").config;
 
                 <div class="col-md-8">
                   <h2 class="h4 mb-3" data-i18n="about.intro">关于我</h2>
-                  <p class="mb-4">
-                    <%= config.description || '这里是一段关于作者的简短介绍。可以包括教育背景、工作经历、技术专长等信息。。'%>
+                  <p class="mb-4" data-i18n="about.bio" data-text-zh="<%= authorInfo.bio || '这里是一段关于作者的简短介绍。可以包括教育背景、工作经历、技术专长等信息。' %>" data-text-en="<%= authorInfo.bio_en || 'This is a brief introduction about the author. It can include educational background, work experience, technical expertise, etc.' %>">
+                    <%= authorInfo.bio || config.description || '这里是一段关于作者的简短介绍。可以包括教育背景、工作经历、技术专长等信息。' %>
                   </p>
 
                   <div class="row mb-4">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                       <h3 class="h5 mb-2" data-i18n="about.location">现居地</h3>
-                      <p class="text-muted">北京市</p>
+                      <p class="text-muted" data-i18n="about.locationValue" data-text-zh="<%= authorInfo.location || '北京市' %>" data-text-en="<%= authorInfo.location_en || 'Beijing' %>">
+                        <%= authorInfo.location || '北京市' %>
+                      </p>
                     </div>
                     <div class="col-sm-6">
                       <h3 class="h5 mb-2" data-i18n="about.experience">工作经历</h3>
-                      <p class="text-muted">5年+</p>
+                      <p class="text-muted" data-i18n="about.experienceValue" data-text-zh="<%= authorInfo.experience || '5年+' %>" data-text-en="<%= authorInfo.experience_en || '5+ years' %>">
+                        <%= authorInfo.experience || '5年+' %>
+                      </p>
                     </div>
                   </div>
 
                   <div class="mb-4">
                     <h3 class="h5 mb-2" data-i18n="about.interests">兴趣爱好</h3>
-                    <p class="text-muted">编程、阅读、摄影、旅行</p>
+                    <p class="text-muted" data-i18n="about.interestsValue" data-text-zh="<%= authorInfo.interests || '编程、阅读、摄影、旅行' %>" data-text-en="<%= authorInfo.interests_en || 'Programming, Reading, Photography, Traveling' %>">
+                      <%= authorInfo.interests || '编程、阅读、摄影、旅行' %>
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div class="row mb-5">
                 <div class="col-12">
-                  <h2 class="h4 mb-4">技能栈</h2>
+                  <h2 class="h4 mb-4" data-i18n="about.skills">技能栈</h2>
                   <div class="row">
                     <div class="col-md-4 mb-4">
                       <div class="card card--tech h-100">
@@ -68,8 +80,8 @@ var config = require("hexo/dist/theme/processors/config").config;
                           <div class="tech-icon rounded-circle mx-auto mb-3" style="width: 60px; height: 60px;">
                             <%- iconManager.renderIcon('code', { size: 32, className: 'text-white' }) %>
                           </div>
-                          <h3 class="card__title h6 mb-2">前端开发</h3>
-                          <p class="card__text small text-muted">HTML/CSS/JavaScript, React, Vue</p>
+                          <h3 class="card__title h6 mb-2" data-i18n="about.frontend">前端开发</h3>
+                          <p class="card__text small text-muted" data-i18n="about.frontendSkills">HTML/CSS/JavaScript, React, Vue</p>
                         </div>
                       </div>
                     </div>
@@ -80,8 +92,8 @@ var config = require("hexo/dist/theme/processors/config").config;
                           <div class="tech-icon rounded-circle mx-auto mb-3" style="width: 60px; height: 60px;">
                             <%- iconManager.renderIcon('server', { size: 32, className: 'text-white' }) %>
                           </div>
-                          <h3 class="card__title h6 mb-2">后端开发</h3>
-                          <p class="card__text small text-muted">Node.js, Python, Java</p>
+                          <h3 class="card__title h6 mb-2" data-i18n="about.backend">后端开发</h3>
+                          <p class="card__text small text-muted" data-i18n="about.backendSkills">Node.js, Python, Java</p>
                         </div>
                       </div>
                     </div>
@@ -92,8 +104,8 @@ var config = require("hexo/dist/theme/processors/config").config;
                           <div class="tech-icon rounded-circle mx-auto mb-3" style="width: 60px; height: 60px;">
                             <%- iconManager.renderIcon('database', { size: 32, className: 'text-white' }) %>
                           </div>
-                          <h3 class="card__title h6 mb-2">数据库</h3>
-                          <p class="card__text small text-muted">MySQL, MongoDB, Redis</p>
+                          <h3 class="card__title h6 mb-2" data-i18n="about.database">数据库</h3>
+                          <p class="card__text small text-muted" data-i18n="about.databaseSkills">MySQL, MongoDB, Redis</p>
                         </div>
                       </div>
                     </div>
@@ -103,10 +115,10 @@ var config = require("hexo/dist/theme/processors/config").config;
 
               <div class="text-center mt-5 pt-4 border-top">
                 <h2 class="h4 mb-3" data-i18n="about.contact">联系方式</h2>
-                <p class="text-muted mb-4">
+                <p class="text-muted mb-4" data-i18n="about.contactDescription">
                   如果您有任何问题或合作意向，欢迎随时联系我。
                 </p>
-                <a href="mailto:me@example.com" class="btn btn--lg" data-i18n="about.contact">联系我</a>
+                <a href="mailto:<%= authorInfo.email || 'me@example.com' %>" class="btn btn--lg" data-i18n="about.contactMe">联系我</a>
               </div>
             </div>
           </div>

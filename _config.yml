@@ -40,6 +40,32 @@ i18n:
   auto_detect: true
 
 # -------------------------------------------
+# Author Information
+# -------------------------------------------
+author:
+  name: "作者名称"
+  title: "全栈开发者"
+  location: "北京市"
+  experience: "5年+"
+  interests: "编程、阅读、摄影、旅行"
+  bio: "这里是一段关于作者的简短介绍。可以包括教育背景、工作经历、技术专长等信息。"
+  email: "me@example.com"
+
+# -------------------------------------------
+# Hero Section (Homepage)
+# -------------------------------------------
+hero:
+  title: "全栈创作者"
+  subtitle: "构建优雅数字体验"
+  primary_button_text: "最新文章"
+  secondary_button_text: "查看全部"
+  tech_stack_title: "技术栈"
+  latest_posts_title: "最新文章"
+  projects_title: "开源项目"
+  sample_post_excerpt: "这里是文章的简短摘要，展示文章的主要内容和亮点..."
+  sample_project_description: "这是一个开源项目的简短描述，展示项目的主要功能和特点..."
+
+# -------------------------------------------
 # Navigation Menu
 # -------------------------------------------
 navigation:

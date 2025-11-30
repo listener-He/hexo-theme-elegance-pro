@@ -1,3 +1,8 @@
+<%
+  // Get hero section configuration
+  const heroConfig = theme.hero || {};
+%>
+
 <%- extends 'layout.ejs' %>
 
 <% block content %>
@@ -10,19 +15,19 @@
           <div class="col-lg-8">
             <h1 class="gradient-text hero-title mb-4" 
                 data-i18n="hero.title"
-                data-text-zh="全栈创作者"
-                data-text-en="Full-Stack Creator">
-              全栈创作者
+                data-text-zh="<%= heroConfig.title || '全栈创作者' %>"
+                data-text-en="<%= heroConfig.title_en || 'Full-Stack Creator' %>">
+              <%= heroConfig.title || '全栈创作者' %>
             </h1>
-            <p class="hero-subtitle fs-5 mb-4" data-i18n="hero.subtitle">
-              构建优雅数字体验
+            <p class="hero-subtitle fs-5 mb-4" data-i18n="hero.subtitle" data-text-zh="<%= heroConfig.subtitle || '构建优雅数字体验' %>" data-text-en="<%= heroConfig.subtitle_en || 'Crafting Elegant Digital Experiences' %>">
+              <%= heroConfig.subtitle || '构建优雅数字体验' %>
             </p>
             <div class="mb-5">
-              <a href="#latest-posts" class="btn btn--gradient btn--lg me-3" data-i18n="hero.latestPosts">
-                最新文章
+              <a href="#latest-posts" class="btn btn--gradient btn--lg me-3" data-i18n="hero.latestPosts" data-text-zh="<%= heroConfig.primary_button_text || '最新文章' %>" data-text-en="<%= heroConfig.primary_button_text_en || 'Latest Posts' %>">
+                <%= heroConfig.primary_button_text || '最新文章' %>
               </a>
-              <a href="/projects" class="btn btn--secondary btn--lg" data-i18n="hero.viewAll">
-                查看全部
+              <a href="/projects" class="btn btn--secondary btn--lg" data-i18n="hero.viewAll" data-text-zh="<%= heroConfig.secondary_button_text || '查看全部' %>" data-text-en="<%= heroConfig.secondary_button_text_en || 'View All' %>">
+                <%= heroConfig.secondary_button_text || '查看全部' %>
               </a>
             </div>
           </div>
@@ -41,15 +46,15 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-9">
-        <h2 class="section-title mb-4 text-center" data-i18n="hero.techStack">
-          技术栈
+        <h2 class="section-title mb-4 text-center" data-i18n="hero.techStack" data-text-zh="<%= heroConfig.tech_stack_title || '技术栈' %>" data-text-en="<%= heroConfig.tech_stack_title_en || 'Tech Stack' %>">
+          <%= heroConfig.tech_stack_title || '技术栈' %>
         </h2>
         <div class="row">
           <% for (let i = 0; i < 6; i++) { %>
             <div class="col-md-4 col-lg-2 mb-4">
               <div class="card card--tech h-100 text-center p-4">
                 <div class="tech-icon bg-primary rounded-circle mx-auto mb-3" style="width: 60px; height: 60px;"></div>
-                <h3 class="h5">技术 <%= i+1 %></h3>
+                <h3 class="h5" data-i18n="hero.techItem" data-i18n-param-index="<%= i+1 %>">技术 <%= i+1 %></h3>
               </div>
             </div>
           <% } %>
@@ -65,11 +70,11 @@
     <div class="row">
       <div class="col-lg-9">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2 class="section-title mb-0" data-i18n="hero.latestPosts">
-            最新文章
+          <h2 class="section-title mb-0" data-i18n="hero.latestPosts" data-text-zh="<%= heroConfig.latest_posts_title || '最新文章' %>" data-text-en="<%= heroConfig.latest_posts_title_en || 'Latest Posts' %>">
+            <%= heroConfig.latest_posts_title || '最新文章' %>
           </h2>
-          <a href="/archives" class="btn btn--outline" data-i18n="hero.viewAll">
-            查看全部
+          <a href="/archives" class="btn btn--outline" data-i18n="hero.viewAll" data-text-zh="<%= heroConfig.secondary_button_text || '查看全部' %>" data-text-en="<%= heroConfig.secondary_button_text_en || 'View All' %>">
+            <%= heroConfig.secondary_button_text || '查看全部' %>
           </a>
         </div>
         <div class="row">
@@ -79,20 +84,20 @@
                 <div class="card__img" style="height: 200px; background-color: #eee;"></div>
                 <div class="card__body d-flex flex-column">
                   <div class="mb-2">
-                    <span class="tag tag--sm me-2">分类</span>
-                    <span class="tag tag--sm tag--success">标签</span>
+                    <span class="tag tag--sm me-2" data-i18n="common.category">分类</span>
+                    <span class="tag tag--sm tag--success" data-i18n="common.tag">标签</span>
                   </div>
                   <h3 class="card__title h5">
-                    <a href="/post/<%= i+1 %>" class="stretched-link text-decoration-none">
+                    <a href="/post/<%= i+1 %>" class="stretched-link text-decoration-none" data-i18n="hero.samplePostTitle" data-i18n-param-index="<%= i+1 %>">
                       文章标题 <%= i+1 %>
                     </a>
                   </h3>
-                  <p class="card__text flex-grow-1">
-                    这里是文章的简短摘要，展示文章的主要内容和亮点...
+                  <p class="card__text flex-grow-1" data-i18n="hero.samplePostExcerpt" data-text-zh="<%= heroConfig.sample_post_excerpt || '这里是文章的简短摘要，展示文章的主要内容和亮点...' %>" data-text-en="<%= heroConfig.sample_post_excerpt_en || 'This is a brief excerpt of the article, showcasing the main content and highlights...' %>">
+                    <%= heroConfig.sample_post_excerpt || '这里是文章的简短摘要，展示文章的主要内容和亮点...' %>
                   </p>
                   <div class="d-flex justify-content-between align-items-center mt-3">
                     <small class="text-muted">2023年5月<%= 10+i %>日</small>
-                    <small class="text-muted">阅读 5 分钟</small>
+                    <small class="text-muted" data-i18n="post.readingTime" data-i18n-param-minutes="5">阅读 5 分钟</small>
                   </div>
                 </div>
               </article>
@@ -110,11 +115,11 @@
     <div class="row">
       <div class="col-lg-9">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2 class="section-title mb-0" data-i18n="projects.title">
-            开源项目
+          <h2 class="section-title mb-0" data-i18n="projects.title" data-text-zh="<%= heroConfig.projects_title || '开源项目' %>" data-text-en="<%= heroConfig.projects_title_en || 'Open Source Projects' %>">
+            <%= heroConfig.projects_title || '开源项目' %>
           </h2>
-          <a href="/projects" class="btn btn--outline" data-i18n="hero.viewAll">
-            查看全部
+          <a href="/projects" class="btn btn--outline" data-i18n="hero.viewAll" data-text-zh="<%= heroConfig.secondary_button_text || '查看全部' %>" data-text-en="<%= heroConfig.secondary_button_text_en || 'View All' %>">
+            <%= heroConfig.secondary_button_text || '查看全部' %>
           </a>
         </div>
         <div class="row">
@@ -122,16 +127,16 @@
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card card--project h-100">
                 <div class="card__body">
-                  <h3 class="card__title h5">项目 <%= i+1 %></h3>
-                  <p class="card__text">
-                    这是一个开源项目的简短描述，展示项目的主要功能和特点...
+                  <h3 class="card__title h5" data-i18n="hero.projectTitle" data-i18n-param-index="<%= i+1 %>">项目 <%= i+1 %></h3>
+                  <p class="card__text" data-i18n="hero.projectDescription" data-text-zh="<%= heroConfig.sample_project_description || '这是一个开源项目的简短描述，展示项目的主要功能和特点...' %>" data-text-en="<%= heroConfig.sample_project_description_en || 'This is a brief description of the open source project, showcasing its main features and characteristics...' %>">
+                    <%= heroConfig.sample_project_description || '这是一个开源项目的简短描述，展示项目的主要功能和特点...' %>
                   </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div>
                       <span class="me-3">⭐ 100</span>
                       <span>🍴 20</span>
                     </div>
-                    <a href="#" class="btn btn--sm btn--primary">查看详情</a>
+                    <a href="#" class="btn btn--sm btn--primary" data-i18n="common.details">查看详情</a>
                   </div>
                 </div>
               </div>

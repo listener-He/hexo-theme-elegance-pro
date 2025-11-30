@@ -101,16 +101,16 @@
               
               <div class="post-actions d-flex justify-content-between">
                 <div>
-                  <button class="btn btn--icon me-2" aria-label="点赞">
-                    <span>👍</span>
+                  <button class="btn btn--icon me-2" aria-label="<%= __('post.like') || '点赞' %>">
+                    <%- iconManager.renderIcon('thumb-up', { size: 20 }) %>
                   </button>
-                  <button class="btn btn--icon me-2" aria-label="分享">
-                    <span>📤</span>
+                  <button class="btn btn--icon me-2" aria-label="<%= __('post.share') || '分享' %>">
+                    <%- iconManager.renderIcon('share', { size: 20 }) %>
                   </button>
                 </div>
                 <div>
-                  <button class="btn btn--icon" aria-label="收藏">
-                    <span>⭐</span>
+                  <button class="btn btn--icon" aria-label="<%= __('post.bookmark') || '收藏' %>">
+                    <%- iconManager.renderIcon('bookmark', { size: 20 }) %>
                   </button>
                 </div>
               </div>
@@ -129,7 +129,7 @@
                     <% } else { %>
                       <div class="post-nav-link post-nav-link--prev d-flex align-items-center h-100 text-muted">
                         <span class="me-2" data-i18n="post.prevPost">上一篇</span>
-                        <span class="text-truncate">没有了</span>
+                        <span class="text-truncate" data-i18n="post.noMore">没有了</span>
                       </div>
                     <% } %>
                   </div>
@@ -141,7 +141,7 @@
                       </a>
                     <% } else { %>
                       <div class="post-nav-link post-nav-link--next d-flex align-items-center justify-content-end h-100 text-muted">
-                        <span class="text-truncate text-end">没有了</span>
+                        <span class="text-truncate text-end" data-i18n="post.noMore">没有了</span>
                         <span class="ms-2" data-i18n="post.nextPost">下一篇</span>
                       </div>
                     <% } %>
@@ -160,11 +160,11 @@
                   <% if (theme.components.comments) { %>
                     <!-- Comments system will be loaded here -->
                     <div class="comments-placeholder text-center py-5">
-                      <p>评论系统加载中...</p>
+                      <p data-i18n="comments.loading">评论系统加载中...</p>
                     </div>
                   <% } else { %>
                     <div class="comments-disabled text-center py-5">
-                      <p class="text-muted">评论功能已关闭</p>
+                      <p class="text-muted" data-i18n="comments.disabled">评论功能已关闭</p>
                     </div>
                   <% } %>
                 </div>

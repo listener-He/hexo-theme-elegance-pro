@@ -13,7 +13,7 @@
               data-text-en="Tags">
             标签云
           </h1>
-          <p class="page-subtitle text-muted">
+          <p class="page-subtitle text-muted" data-i18n="tags.total" data-i18n-param-count="<%= tags.length %>">
             共计 <%= tags.length %> 个标签
           </p>
         </header>
@@ -76,12 +76,12 @@
                             <% if (tag.posts.length > 5) { %>
                               <div class="text-center mt-3">
                                 <a href="<%= url_for(tag.path) %>" class="btn btn--sm btn--outline">
-                                  查看全部 <%= tag.posts.length %> 篇文章
+                                  <span data-i18n="tags.viewAll" data-i18n-param-count="<%= tag.posts.length %>">查看全部 <%= tag.posts.length %> 篇文章</span>
                                 </a>
                               </div>
                             <% } %>
                           <% } else { %>
-                            <p class="text-muted small mb-0">这个标签下还没有文章</p>
+                            <p class="text-muted small mb-0" data-i18n="tags.empty">这个标签下还没有文章</p>
                           <% } %>
                         </div>
                       </div>
@@ -92,9 +92,9 @@
             </div>
           <% } else { %>
             <div class="empty-state text-center py-5">
-              <h3 class="mb-3">暂无标签</h3>
-              <p class="text-muted">还没有创建任何标签</p>
-              <a href="/" class="btn btn--primary">返回首页</a>
+              <h3 class="mb-3" data-i18n="tags.empty.title">暂无标签</h3>
+              <p class="text-muted" data-i18n="tags.empty.description">还没有创建任何标签</p>
+              <a href="<%= url_for('/') %>" class="btn btn--primary" data-i18n="common.backHome">返回首页</a>
             </div>
           <% } %>
         </div>
