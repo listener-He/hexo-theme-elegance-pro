@@ -142,3 +142,53 @@ ads:
   
   # 其他广告平台
   custom: ""
+
+# -------------------------------------------
+# Custom Code Injections
+# -------------------------------------------
+injections:
+  # Head injections - added to <head> section
+  head: []
+  #   - type: script
+  #     src: https://example.com/script.js
+  #     async: true
+  #   - type: style
+  #     href: https://example.com/style.css
+  #   - type: script
+  #     content: |
+  #       console.log('Custom script in head');
+  #   - type: html
+  #     content: <meta name="custom-meta" content="value">
+  
+  # Body start injections - added right after <body> tag
+  bodyStart: []
+  #   - type: html
+  #     content: <div id="custom-body-start">Body start content</div>
+  
+  # Body end injections - added before </body> tag
+  bodyEnd: []
+  #   - type: html
+  #     content: <div id="custom-body-end">Body end content</div>
+  
+  # Footer injections - added after main scripts
+  footer: []
+  #   - type: script
+  #     src: https://example.com/footer-script.js
+  #   - type: script
+  #     content: |
+  #       console.log('Footer script');
+  
+  # Page-specific injections
+  pages: {}
+  #   /about/:
+  #     - position: head
+  #       type: script
+  #       content: console.log('About page script');
+  #     - position: '#main-content'
+  #       method: append
+  #       type: html
+  #       content: <div>Custom content for about page</div>
+  #   /posts/*:
+  #     - position: body-start
+  #       type: html
+  #       content: <div>Custom content for all posts</div>

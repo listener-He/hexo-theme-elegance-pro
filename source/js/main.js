@@ -6,6 +6,7 @@
 // Import managers
 import './managers/theme-manager.js';
 import './managers/i18n-manager.js';
+import './managers/injection-manager.js';
 
 // Import utilities
 // Additional utilities can be imported here
@@ -31,6 +32,11 @@ ready(function() {
   // Initialize i18n manager
   if (window.i18n) {
     console.log('I18n manager initialized');
+  }
+  
+  // Initialize injection manager
+  if (window.injectionManager) {
+    console.log('Injection manager initialized');
   }
   
   // Bind event listeners for theme toggle

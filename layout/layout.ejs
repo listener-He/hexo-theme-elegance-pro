@@ -6,6 +6,15 @@
   <!-- Skip to content link for accessibility -->
   <a href="#main-content" class="sr-only skip-link">跳转到主要内容</a>
   
+  <!-- Custom Body Start Injections -->
+  <% if (theme.injections && theme.injections.bodyStart) { %>
+    <% theme.injections.bodyStart.forEach(injection => { %>
+      <% if (injection.type === 'html') { %>
+  <%= injection.content %>
+      <% } %>
+    <% }); %>
+  <% } %>
+  
   <!-- Header -->
   <%- partial('_partial/header') %>
   
@@ -26,6 +35,15 @@
   <!-- Footer -->
   <%- partial('_partial/footer') %>
   
+  <!-- Custom Body End Injections -->
+  <% if (theme.injections && theme.injections.bodyEnd) { %>
+    <% theme.injections.bodyEnd.forEach(injection => { %>
+      <% if (injection.type === 'html') { %>
+  <%= injection.content %>
+      <% } %>
+    <% }); %>
+  <% } %>
+  
   <!-- Theme switcher -->
   <button class="theme-toggle btn btn--icon" aria-label="切换主题">
     <span class="theme-toggle-icon">🌙</span>
@@ -43,5 +61,26 @@
   
   <!-- Main JavaScript -->
   <script src="/js/main.js"></script>
+  
+  <!-- Custom Footer Injections -->
+  <% if (theme.injections && theme.injections.footer) { %>
+    <% theme.injections.footer.forEach(injection => { %>
+      <% if (injection.type === 'script') { %>
+        <% if (injection.src) { %>
+  <script src="<%= injection.src %>"<%= injection.async ? ' async' : '' %><%= injection.defer ? ' defer' : '' %>></script>
+        <% } else { %>
+  <script<%= injection.async ? ' async' : '' %><%= injection.defer ? ' defer' : '' %>><%= injection.content %></script>
+        <% } %>
+      <% } else if (injection.type === 'style') { %>
+        <% if (injection.href) { %>
+  <link rel="stylesheet" href="<%= injection.href %>">
+        <% } else { %>
+  <style><%= injection.content %></style>
+        <% } %>
+      <% } else if (injection.type === 'html') { %>
+  <%= injection.content %>
+      <% } %>
+    <% }); %>
+  <% } %>
 </body>
 </html>

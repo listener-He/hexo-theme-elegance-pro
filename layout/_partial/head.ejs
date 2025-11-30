@@ -9,6 +9,10 @@
   // Analytics config
   const analytics = theme.analytics || {};
   const seo = theme.seo || {};
+  
+  // Injections config
+  const injections = theme.injections || {};
+  const headInjections = injections.head || [];
 %>
 
 <head>
@@ -86,6 +90,9 @@
       // Apply immediately to prevent flash
       document.documentElement.setAttribute('data-theme', theme);
       document.documentElement.setAttribute('data-lang', lang);
+      
+      // Store theme config for use by other components
+      window.themeConfig = <%- JSON.stringify(theme) %>;
     })();
   </script>
   
@@ -180,4 +187,23 @@
       "description": "<%= config.description %>"
     }
   </script>
+  
+  <!-- Custom Head Injections -->
+  <% headInjections.forEach(injection => { %>
+    <% if (injection.type === 'script') { %>
+      <% if (injection.src) { %>
+  <script src="<%= injection.src %>"<%= injection.async ? ' async' : '' %><%= injection.defer ? ' defer' : '' %>></script>
+      <% } else { %>
+  <script<%= injection.async ? ' async' : '' %><%= injection.defer ? ' defer' : '' %>><%= injection.content %></script>
+      <% } %>
+    <% } else if (injection.type === 'style') { %>
+      <% if (injection.href) { %>
+  <link rel="stylesheet" href="<%= injection.href %>">
+      <% } else { %>
+  <style><%= injection.content %></style>
+      <% } %>
+    <% } else if (injection.type === 'html') { %>
+  <%= injection.content %>
+    <% } %>
+  <% }); %>
 </head>
