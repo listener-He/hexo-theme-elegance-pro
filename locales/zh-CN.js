@@ -16,6 +16,26 @@ export default {
     back: "返回",
     close: "关闭"
   },
+  social: {
+    github: "GitHub",
+    twitter: "Twitter",
+    email: "邮箱",
+    facebook: "Facebook",
+    linkedin: "LinkedIn",
+    instagram: "Instagram",
+    youtube: "YouTube",
+    wechat: "微信",
+    weibo: "微博",
+    zhihu: "知乎",
+    douban: "豆瓣",
+    reddit: "Reddit",
+    pinterest: "Pinterest",
+    tumblr: "Tumblr",
+    snapchat: "Snapchat",
+    whatsapp: "WhatsApp",
+    telegram: "Telegram",
+    discord: "Discord"
+  },
   hero: {
     title: "全栈创作者",
     subtitle: "构建优雅数字体验",

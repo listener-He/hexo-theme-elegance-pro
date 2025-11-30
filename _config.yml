@@ -74,9 +74,23 @@ components:
 # Social Links
 # -------------------------------------------
 social:
-  github: "https://github.com/username"
-  twitter: "https://twitter.com/username"
-  email: "mailto:me@example.com"
+  links:
+    - name: github
+      url: "https://github.com/username"
+      icon: "💻"
+      i18n: social.github
+    - name: twitter
+      url: "https://twitter.com/username"
+      icon: "🐦"
+      i18n: social.twitter
+    - name: email
+      url: "mailto:me@example.com"
+      icon: "✉️"
+      i18n: social.email
+  # For backward compatibility, you can still use the old format:
+  # github: "https://github.com/username"
+  # twitter: "https://twitter.com/username"
+  # email: "mailto:me@example.com"
 
 # -------------------------------------------
 # Analytics (Optional)

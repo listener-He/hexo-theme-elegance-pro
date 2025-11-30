@@ -19,23 +19,55 @@
       
       <!-- Social links -->
       <div class="author-social-links d-flex justify-content-center flex-wrap">
-        <% if (theme.social) { %>
-          <% if (theme.social.github) { %>
-            <a href="<%= theme.social.github %>" class="btn btn--icon btn--sm btn--glass me-1 mb-1" aria-label="GitHub">
-              <span>💻</span>
-            </a>
-          <% } %>
-          <% if (theme.social.twitter) { %>
-            <a href="<%= theme.social.twitter %>" class="btn btn--icon btn--sm btn--glass me-1 mb-1" aria-label="Twitter">
-              <span>🐦</span>
-            </a>
-          <% } %>
-          <% if (theme.social.email) { %>
-            <a href="<%= theme.social.email %>" class="btn btn--icon btn--sm btn--glass mb-1" aria-label="Email">
-              <span>✉️</span>
-            </a>
-          <% } %>
-        <% } %>
+        <% 
+          // Get social links - support both old and new format
+          let socialLinks = [];
+          if (theme.social.links && Array.isArray(theme.social.links)) {
+            // New format
+            socialLinks = theme.social.links;
+          } else if (theme.social) {
+            // Old format
+            socialLinks = Object.keys(theme.social)
+              .filter(key => theme.social[key])
+              .map(key => ({
+                name: key,
+                url: theme.social[key],
+                icon: getSocialIcon(key),
+                i18n: `social.${key}`
+              }));
+          }
+          
+          function getSocialIcon(name) {
+            const iconMap = {
+              'github': '💻',
+              'twitter': '🐦',
+              'email': '✉️',
+              'facebook': '📘',
+              'linkedin': '💼',
+              'instagram': '📸',
+              'youtube': '📺',
+              'wechat': '💬',
+              'weibo': '📢',
+              'zhihu': '知',
+              'douban': '豆',
+              'reddit': '🐰',
+              'pinterest': '📌',
+              'tumblr': 'ⓣ',
+              'snapchat': '👻',
+              'whatsapp': '💬',
+              'telegram': '✈️',
+              'discord': '🔊'
+            };
+            return iconMap[name] || '🔗';
+          }
+        %>
+        
+        <% socialLinks.forEach((link, index) => { %>
+          <% const marginClass = index === socialLinks.length - 1 ? 'mb-1' : 'me-1 mb-1'; %>
+          <a href="<%= link.url %>" class="btn btn--icon btn--sm btn--glass <%= marginClass %>" <% if (link.i18n) { %>aria-label="<%= link.name %>" data-i18n="<%= link.i18n %>"<% } else { %>aria-label="<%= link.name %>"<% } %>>
+            <span><%= link.icon %></span>
+          </a>
+        <% }); %>
       </div>
     </div>
   </div>

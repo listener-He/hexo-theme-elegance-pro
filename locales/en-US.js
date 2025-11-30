@@ -16,6 +16,26 @@ export default {
     back: "Back",
     close: "Close"
   },
+  social: {
+    github: "GitHub",
+    twitter: "Twitter",
+    email: "Email",
+    facebook: "Facebook",
+    linkedin: "LinkedIn",
+    instagram: "Instagram",
+    youtube: "YouTube",
+    wechat: "WeChat",
+    weibo: "Weibo",
+    zhihu: "Zhihu",
+    douban: "Douban",
+    reddit: "Reddit",
+    pinterest: "Pinterest",
+    tumblr: "Tumblr",
+    snapchat: "Snapchat",
+    whatsapp: "WhatsApp",
+    telegram: "Telegram",
+    discord: "Discord"
+  },
   hero: {
     title: "Full-Stack Creator",
     subtitle: "Crafting Elegant Digital Experiences",
