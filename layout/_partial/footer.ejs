@@ -30,7 +30,7 @@
           %>
           
           <% socialLinks.forEach(link => { %>
-            <a href="<%= link.url %>" class="btn btn--icon btn--glass me-2" <% if (link.i18n) { %>aria-label="<%= link.name %>" data-i18n="<%= link.i18n %>"<% } else { %>aria-label="<%= link.name %>"<% } %>>
+            <a href="<%= link.url %>" class="btn btn--icon btn--glass me-2" <% if (link.i18n) { %>aria-label="<%= link.name %>" data-i18n="<%= link.i18n %>"<% } else { %>aria-label="<%= link.name %>"<% } %> target="_blank" rel="noopener noreferrer">
               <%- iconManager.renderIcon(link.icon, { size: 20 }) %>
             </a>
           <% }); %>
@@ -57,7 +57,7 @@
           
           <% navItems.forEach(item => { %>
             <li class="mb-2">
-              <a href="<%= url_for(item.path) %>" class="text-decoration-none" <% if (item.i18n) { %>data-i18n="<%= item.i18n %>"<% } %>>
+              <a href="<%= url_for(item.path) %>" class="text-decoration-none" <% if (item.i18n) { %>data-i18n="<%= item.i18n %>"<% } %> aria-current="<%= is_current(item.path, 'page') ? 'page' : undefined %>">
                 <%- iconManager.renderIcon(item.icon, { size: 16, className: 'me-1' }) %>
                 <%= item.title %>
               </a>

@@ -33,7 +33,7 @@
 
                   <div class="social-links d-flex justify-content-center flex-wrap mt-3">
                     <% socialLinks.forEach(link => { %>
-                      <a href="<%= link.url %>" class="btn btn--icon btn--glass me-2 mb-2" aria-label="<%= link.name %>">
+                      <a href="<%= link.url %>" class="btn btn--icon btn--glass me-2 mb-2" aria-label="<%= link.name %>" target="_blank" rel="noopener noreferrer">
                         <%- iconManager.renderIcon(link.icon, { size: 20 }) %>
                       </a>
                     <% }); %>
@@ -118,7 +118,7 @@
                 <p class="text-muted mb-4" data-i18n="about.contactDescription">
                   如果您有任何问题或合作意向，欢迎随时联系我。
                 </p>
-                <a href="mailto:<%= authorInfo.email || 'me@example.com' %>" class="btn btn--lg" data-i18n="about.contactMe">联系我</a>
+                <a href="mailto:<%= authorInfo.email || 'me@example.com' %>" class="btn btn--lg" data-i18n="about.contactMe" aria-label="<%= __('about.contactMe') || '发送邮件' %>">联系我</a>
               </div>
             </div>
           </div>

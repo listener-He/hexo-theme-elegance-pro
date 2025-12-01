@@ -9,9 +9,9 @@
         <header class="page-header mb-5 text-center">
           <h1 class="page-title gradient-text mb-3" 
               data-i18n="categories.title"
-              data-text-zh="文章分类"
-              data-text-en="Categories">
-            文章分类
+              data-text-zh="<%= theme.categories.title || '文章分类' %>"
+              data-text-en="<%= theme.categories.title_en || 'Categories' %>">
+            <%= theme.categories.title || '文章分类' %>
           </h1>
           <p class="page-subtitle text-muted" data-i18n="categories.total" data-i18n-param-count="<%= categories.length %>">
             共计 <%= categories.length %> 个分类
@@ -35,18 +35,18 @@
                         <% if (category.description) { %>
                           <%= category.description %>
                         <% } else { %>
-                          <span class="text-muted" data-i18n="categories.noDescription">这个分类还没有描述</span>
+                          <span class="text-muted" data-i18n="categories.noDescription"><%= theme.categories.no_description || '这个分类还没有描述' %></span>
                         <% } %>
                       </p>
                       <div class="mt-3 d-flex justify-content-between align-items-center">
                         <span class="category-count">
                           <span class="badge bg-primary">
                             <%= category.posts.length %> 
-                            <span data-i18n="archive.count" data-i18n-param-count="<%= category.posts.length %>">篇文章</span>
+                            <span data-i18n="archive.count" data-i18n-param-count="<%= category.posts.length %>"><%= theme.archive.count_suffix || '篇文章' %></span>
                           </span>
                         </span>
                         <a href="<%= url_for(category.path) %>" class="btn btn--sm btn--primary">
-                          <span data-i18n="common.readMore">阅读全文</span>
+                          <span data-i18n="common.readMore"><%= theme.categories.read_more || '阅读全文' %></span>
                         </a>
                       </div>
                     </div>
@@ -57,7 +57,7 @@
             
             <!-- Category Cloud -->
             <div class="category-cloud-section mt-5">
-              <h2 class="section-title mb-4" data-i18n="categories.cloud">分类云</h2>
+              <h2 class="section-title mb-4" data-i18n="categories.cloud"><%= theme.categories.cloud_title || '分类云' %></h2>
               <div class="category-cloud">
                 <% categories.forEach(category => { %>
                   <a href="<%= url_for(category.path) %>" 
@@ -70,9 +70,9 @@
             </div>
           <% } else { %>
             <div class="empty-state text-center py-5">
-              <h3 class="mb-3" data-i18n="categories.empty.title">暂无分类</h3>
-              <p class="text-muted" data-i18n="categories.empty.description">还没有创建任何分类</p>
-              <a href="<%= url_for('/') %>" class="btn btn--primary" data-i18n="common.backHome">返回首页</a>
+              <h3 class="mb-3" data-i18n="categories.empty.title"><%= theme.categories.empty_title || '暂无分类' %></h3>
+              <p class="text-muted" data-i18n="categories.empty.description"><%= theme.categories.empty_description || '还没有创建任何分类' %></p>
+              <a href="<%= url_for('/') %>" class="btn btn--primary" data-i18n="common.backHome"><%= __('common.backHome') || '返回首页' %></a>
             </div>
           <% } %>
         </div>

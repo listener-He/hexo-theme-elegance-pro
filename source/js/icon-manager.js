@@ -3,6 +3,11 @@
  * Handles icon loading and rendering for the theme
  */
 
+// Import the icon renderer
+import IconRenderer from './components/icon-renderer.js';
+
+const iconRenderer = new IconRenderer();
+
 class IconManager {
   constructor() {
     this.icons = new Map();
@@ -49,9 +54,10 @@ class IconManager {
     const className = options.className || '';
     const size = options.size || 24;
     const ariaLabel = options.ariaLabel || name;
+    const color = options.color || 'currentColor';
 
-    // Create a placeholder for rendering
-    return `<span class="icon icon-${name} ${className}" data-icon="${name}" style="display:inline-block;width:${size}px;height:${size}px;" aria-label="${ariaLabel}"></span>`;
+    // Render actual SVG icon
+    return iconRenderer.render(name, { size, className, color, ariaLabel });
   }
 }
 

@@ -9,9 +9,9 @@
         <header class="page-header mb-5 text-center">
           <h1 class="page-title gradient-text mb-3" 
               data-i18n="archive.title"
-              data-text-zh="文章归档"
-              data-text-en="Archive">
-            文章归档
+              data-text-zh="<%= theme.archive.title || '文章归档' %>"
+              data-text-en="<%= theme.archive.title_en || 'Archive' %>">
+            <%= theme.archive.title || '文章归档' %>
           </h1>
           <p class="page-subtitle text-muted" data-i18n="archive.total" data-i18n-param-count="<%= posts.length %>">
             共计 <%= posts.length %> 篇文章
@@ -37,18 +37,18 @@
               <div class="archive-year mb-5" id="year-<%= year %>">
                 <h2 class="archive-year-title d-flex align-items-center mb-4">
                   <span class="me-3 gradient-text" data-i18n="archive.year" data-i18n-param-year="<%= year %>">
-                    <%= year %> 年
+                    <%= year %> <%= theme.archive.year_suffix || '年' %>
                   </span>
                   <span class="badge bg-secondary">
-                    <%= postsByYear[year].length %> <span data-i18n="archive.count" data-i18n-param-count="<%= postsByYear[year].length %>">篇文章</span>
+                    <%= postsByYear[year].length %> <span data-i18n="archive.count" data-i18n-param-count="<%= postsByYear[year].length %>"><%= theme.archive.count_suffix || '篇文章' %></span>
                   </span>
                   <button class="btn btn-sm btn-outline-primary ms-auto toggle-year" 
                           data-bs-toggle="collapse" 
                           data-bs-target="#posts-<%= year %>" 
                           aria-expanded="true" 
                           aria-controls="posts-<%= year %>">
-                    <span data-i18n="archive.collapse">折叠</span>
-                    <span data-i18n="archive.expand">展开</span>
+                    <span data-i18n="archive.collapse"><%= theme.archive.collapse || '折叠' %></span>
+                    <span data-i18n="archive.expand"><%= theme.archive.expand || '展开' %></span>
                   </button>
                 </h2>
                 
@@ -83,9 +83,9 @@
             <% }); %>
           <% } else { %>
             <div class="empty-state text-center py-5">
-              <h3 class="mb-3" data-i18n="archive.empty.title">暂无文章</h3>
-              <p class="text-muted" data-i18n="archive.empty.description">还没有发布任何文章</p>
-              <a href="<%= url_for('/') %>" class="btn btn--primary" data-i18n="common.backHome">返回首页</a>
+              <h3 class="mb-3" data-i18n="archive.empty.title"><%= theme.archive.empty_title || '暂无文章' %></h3>
+              <p class="text-muted" data-i18n="archive.empty.description"><%= theme.archive.empty_description || '还没有发布任何文章' %></p>
+              <a href="<%= url_for('/') %>" class="btn btn--primary" data-i18n="common.backHome"><%= __('common.backHome') || '返回首页' %></a>
             </div>
           <% } %>
         </div>

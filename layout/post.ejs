@@ -37,13 +37,13 @@
                   <span class="mx-2">•</span>
                   <span class="post-reading-time">
                     <span data-i18n="post.readingTime" data-i18n-param-minutes="<%= Math.ceil(page.content.length / 400) || 1 %>">
-                      阅读 <%= Math.ceil(page.content.length / 400) || 1 %> 分钟
+                      <%= theme.post.reading_time || '阅读' %> <%= Math.ceil(page.content.length / 400) || 1 %> <%= theme.post.reading_time_unit || '分钟' %>
                     </span>
                   </span>
                   <% if (page.wordCount) { %>
                     <span class="mx-2">•</span>
                     <span class="post-word-count">
-                      <span data-i18n="post.wordCount">字数</span>: <%= page.wordCount %>
+                      <span data-i18n="post.wordCount"><%= theme.post.word_count || '字数' %></span>: <%= page.wordCount %>
                     </span>
                   <% } %>
                 </div>
@@ -90,7 +90,7 @@
             <footer class="post-footer mb-5">
               <% if (page.tags && page.tags.length > 0) { %>
                 <div class="post-tags mb-4">
-                  <h3 class="h6 d-inline-block me-2 mb-0" data-i18n="post.tags">标签:</h3>
+                  <h3 class="h6 d-inline-block me-2 mb-0" data-i18n="post.tags"><%= theme.post.tags_label || '标签:' %></h3>
                   <% page.tags.forEach(tag => { %>
                     <a href="<%= url_for(tag.path) %>" class="tag tag--sm me-2">
                       <%= tag.name %>
@@ -101,15 +101,15 @@
               
               <div class="post-actions d-flex justify-content-between">
                 <div>
-                  <button class="btn btn--icon me-2" aria-label="<%= __('post.like') || '点赞' %>">
+                  <button class="btn btn--icon me-2" aria-label="<%= theme.post.like || '点赞' %>">
                     <%- iconManager.renderIcon('thumb-up', { size: 20 }) %>
                   </button>
-                  <button class="btn btn--icon me-2" aria-label="<%= __('post.share') || '分享' %>">
+                  <button class="btn btn--icon me-2" aria-label="<%= theme.post.share || '分享' %>">
                     <%- iconManager.renderIcon('share', { size: 20 }) %>
                   </button>
                 </div>
                 <div>
-                  <button class="btn btn--icon" aria-label="<%= __('post.bookmark') || '收藏' %>">
+                  <button class="btn btn--icon" aria-label="<%= theme.post.bookmark || '收藏' %>">
                     <%- iconManager.renderIcon('bookmark', { size: 20 }) %>
                   </button>
                 </div>
@@ -123,13 +123,13 @@
                   <div class="col-md-6">
                     <% if (page.prev) { %>
                       <a href="<%= url_for(page.prev.path) %>" class="post-nav-link post-nav-link--prev d-flex align-items-center h-100">
-                        <span class="me-2" data-i18n="post.prevPost">上一篇</span>
+                        <span class="me-2" data-i18n="post.prevPost"><%= theme.post.prev_post || '上一篇' %></span>
                         <span class="text-truncate"><%= page.prev.title %></span>
                       </a>
                     <% } else { %>
                       <div class="post-nav-link post-nav-link--prev d-flex align-items-center h-100 text-muted">
-                        <span class="me-2" data-i18n="post.prevPost">上一篇</span>
-                        <span class="text-truncate" data-i18n="post.noMore">没有了</span>
+                        <span class="me-2" data-i18n="post.prevPost"><%= theme.post.prev_post || '上一篇' %></span>
+                        <span class="text-truncate" data-i18n="post.noMore"><%= theme.post.no_more || '没有了' %></span>
                       </div>
                     <% } %>
                   </div>
@@ -137,12 +137,12 @@
                     <% if (page.next) { %>
                       <a href="<%= url_for(page.next.path) %>" class="post-nav-link post-nav-link--next d-flex align-items-center justify-content-end h-100">
                         <span class="text-truncate text-end"><%= page.next.title %></span>
-                        <span class="ms-2" data-i18n="post.nextPost">下一篇</span>
+                        <span class="ms-2" data-i18n="post.nextPost"><%= theme.post.next_post || '下一篇' %></span>
                       </a>
                     <% } else { %>
                       <div class="post-nav-link post-nav-link--next d-flex align-items-center justify-content-end h-100 text-muted">
-                        <span class="text-truncate text-end" data-i18n="post.noMore">没有了</span>
-                        <span class="ms-2" data-i18n="post.nextPost">下一篇</span>
+                        <span class="text-truncate text-end" data-i18n="post.noMore"><%= theme.post.no_more || '没有了' %></span>
+                        <span class="ms-2" data-i18n="post.nextPost"><%= theme.post.next_post || '下一篇' %></span>
                       </div>
                     <% } %>
                   </div>
@@ -154,7 +154,7 @@
             <section class="post-comments">
               <div class="card">
                 <div class="card__header">
-                  <h3 class="card__title mb-0" data-i18n="common.comments">评论</h3>
+                  <h3 class="card__title mb-0" data-i18n="common.comments"><%= __('common.comments') || '评论' %></h3>
                 </div>
                 <div class="card__body">
                   <% if (theme.components.comments) { %>

@@ -4,7 +4,7 @@
       <!-- Site Branding -->
       <div class="site-branding">
         <h1 class="site-title h5 mb-0">
-          <a href="<%= url_for() %>" class="text-decoration-none">
+          <a href="<%= url_for() %>" class="text-decoration-none" aria-label="<%= __('common.home') || '返回首页' %>">
             <%= config.title %>
           </a>
         </h1>
@@ -34,7 +34,7 @@
           
           <% navItems.forEach(item => { %>
             <li class="nav-item">
-              <a href="<%= url_for(item.path) %>" class="nav-link text-decoration-none d-flex align-items-center <%= is_current(item.path, 'active') %>" <% if (item.i18n) { %>data-i18n="<%= item.i18n %>"<% } %>>
+              <a href="<%= url_for(item.path) %>" class="nav-link text-decoration-none d-flex align-items-center <%= is_current(item.path, 'active') %>" <% if (item.i18n) { %>data-i18n="<%= item.i18n %>"<% } %> aria-current="<%= is_current(item.path, 'page') ? 'page' : undefined %>">
                 <%- iconManager.renderIcon(item.icon, { size: 16, className: 'me-1' }) %>
                 <%= item.title %>
               </a>

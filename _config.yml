@@ -66,6 +66,64 @@ hero:
   sample_project_description: "这是一个开源项目的简短描述，展示项目的主要功能和特点..."
 
 # -------------------------------------------
+# Archive Page
+# -------------------------------------------
+archive:
+  title: "文章归档"
+  empty_title: "暂无文章"
+  empty_description: "还没有发布任何文章"
+  collapse: "折叠"
+  expand: "展开"
+  year_suffix: "年"
+  count_suffix: "篇文章"
+
+# -------------------------------------------
+# Categories Page
+# -------------------------------------------
+categories:
+  title: "文章分类"
+  empty_title: "暂无分类"
+  empty_description: "还没有创建任何分类"
+  no_description: "这个分类还没有描述"
+  cloud_title: "分类云"
+  read_more: "阅读全文"
+
+# -------------------------------------------
+# Tags Page
+# -------------------------------------------
+tags:
+  title: "标签云"
+  empty_title: "暂无标签"
+  empty_description: "还没有创建任何标签"
+  all_tags: "全部标签"
+  view_all: "查看全部"
+  no_posts: "这个标签下还没有文章"
+
+# -------------------------------------------
+# Post Page
+# -------------------------------------------
+post:
+  prev_post: "上一篇"
+  next_post: "下一篇"
+  no_more: "没有了"
+  like: "点赞"
+  share: "分享"
+  bookmark: "收藏"
+  tags_label: "标签:"
+  reading_time: "阅读"
+  reading_time_unit: "分钟"
+  word_count: "字数"
+
+# -------------------------------------------
+# 404 Page
+# -------------------------------------------
+not_found:
+  title: "页面迷路了"
+  subtitle: "看起来这个页面不存在"
+  back_home: "返回首页"
+  go_back: "返回"
+
+# -------------------------------------------
 # Navigation Menu
 # -------------------------------------------
 navigation:
